@@ -1,0 +1,18 @@
+{
+  "license": "MIT",
+  "file_hash": null,
+  "name": "Parasite.Dynamo",
+  "version": "1.0.0",
+  "description": "A collection of custom Dynamo nodes.",
+  "group": "",
+  "keywords": [ "Parasite", "Dynamo" ],
+  "dependencies": [],
+  "contents": "",
+  "engine_version": "1.0.0",
+  "engine": "dynamo",
+  "engine_metadata": "",
+  "site_url": "",
+  "repository_url": "",
+  "contains_binaries": true,
+  "node_libraries": [ "Parasite.Dynamo, Version=1.0.0, Culture=neutral, PublicKeyToken=null" ]
+}

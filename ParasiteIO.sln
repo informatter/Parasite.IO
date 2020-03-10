@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParasiteIO", "Parasite.Core\ParasiteIO.csproj", "{4B1C7E55-0BAC-42AC-B98E-EB25C5D303B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parasite.Grasshopper", "Parasite.Grasshopper\Parasite.Grasshopper.csproj", "{7A1BCE68-8011-48F8-90B2-6544D1A7A5B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{B79786FD-3DD9-4056-8F84-2B6F2840E47F}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parasite.Dynamo", "Parasite.Dynamo\Parasite.Dynamo.csproj", "{4BAEB7A8-F191-4B9F-8AA0-54C7220D6070}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4B1C7E55-0BAC-42AC-B98E-EB25C5D303B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B1C7E55-0BAC-42AC-B98E-EB25C5D303B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B1C7E55-0BAC-42AC-B98E-EB25C5D303B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B1C7E55-0BAC-42AC-B98E-EB25C5D303B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A1BCE68-8011-48F8-90B2-6544D1A7A5B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A1BCE68-8011-48F8-90B2-6544D1A7A5B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A1BCE68-8011-48F8-90B2-6544D1A7A5B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A1BCE68-8011-48F8-90B2-6544D1A7A5B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BAEB7A8-F191-4B9F-8AA0-54C7220D6070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BAEB7A8-F191-4B9F-8AA0-54C7220D6070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BAEB7A8-F191-4B9F-8AA0-54C7220D6070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BAEB7A8-F191-4B9F-8AA0-54C7220D6070}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5A4149B-3CB4-45B8-B96C-24992F4BE7F3}
+	EndGlobalSection
+EndGlobal
