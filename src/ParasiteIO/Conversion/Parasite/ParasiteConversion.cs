@@ -14,6 +14,9 @@ using Rhino.Geometry;
 using Rhino.Geometry.Collections;
 using System.Drawing;
 
+using dynamoGeo = Autodesk.DesignScript.Geometry;
+using Parasite.Core.Types.Display;
+
 namespace Parasite.Conversion.Parasite
 {
 
@@ -23,11 +26,19 @@ namespace Parasite.Conversion.Parasite
     /// </summary>
     public partial class ParasiteConversion
     {
+
+        #region DISPLAY
+
+        public static Parasite_Color ToParasiteType(Color col) => new Parasite_Color(col.A,col.R,col.G,col.B);
+
+        #endregion
+
+
         #region POINTS
-        public static  Parasite_Point3d ToParasiteType( Point3d pt)
-        {
-            return new Parasite_Point3d(pt.X, pt.Y,pt.Z);
-        }
+        public static  Parasite_Point3d ToParasiteType( Point3d pt) => new Parasite_Point3d(pt.X, pt.Y, pt.Z);
+
+        public static Parasite_Point3d ToParasiteType(dynamoGeo.Point pt) => new Parasite_Point3d(pt.X, pt.Y, pt.Z);
+
 
         #endregion
 
@@ -36,7 +47,7 @@ namespace Parasite.Conversion.Parasite
         #region MESHES
         public static Parasite_Mesh ToParasiteType( Rhino.Geometry.Mesh mesh, Dictionary<string, string> properties = null)
         {
-
+            
             if (!mesh.IsValid) throw new ParasiteArgumentException("Please input a valid Rhino Mesh!");
 
             Rhino.Geometry.Collections.MeshFaceList faces = mesh.Faces;
@@ -131,6 +142,13 @@ namespace Parasite.Conversion.Parasite
         #endregion
 
         #region BREPS - SOLID
+
+       public static  Parasite_Sphere ToParasiteType (Autodesk.DesignScript.Geometry.Sphere sphere, Color color, Dictionary<string, string> properties = null)
+       {
+            return new Parasite_Sphere(ToParasiteType(sphere.CenterPoint), sphere.Radius, ToParasiteType(color), properties);
+
+       }
+
         #endregion
 
 

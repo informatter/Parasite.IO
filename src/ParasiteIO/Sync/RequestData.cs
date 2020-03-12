@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Parasite.Core.Data;
+using Parasite.Core.Collections;
 
 namespace Parasite.Core.Sync
 {

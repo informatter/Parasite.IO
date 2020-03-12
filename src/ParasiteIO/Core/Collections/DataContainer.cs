@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Parasite.Core.Types;
 
 
-namespace Parasite.Core.Data
+namespace Parasite.Core.Collections
 {
 
     [Serializable]

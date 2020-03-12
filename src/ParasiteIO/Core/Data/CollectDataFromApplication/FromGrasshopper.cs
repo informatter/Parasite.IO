@@ -9,17 +9,18 @@ using Rhino.Geometry.Collections;
 using Parasite.Conversion.Parasite;
 using Parasite.Core.Types;
 using System.Drawing;
+using Parasite.Core.Collections;
 
-namespace Parasite.Core.Data.CollectData
+namespace Parasite.Core.Data.CollectDataFromApplication
 {
 
     /// <summary>
     /// 
     /// </summary>
-    public  class FromGrasshopper
+    public class FromGrasshopper : IApplicationDataCollector
     {
 
-        public  static DataContainer RetreiveData(List<DataContainerFactory> dataFromApp)
+        public  DataContainer CollectDataFromApplication(List<DataContainerFactory> dataFromApp)
         {
             DataContainer dataContainer = new DataContainer();
 

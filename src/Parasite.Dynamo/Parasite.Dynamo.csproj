@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Parasite.Dynamo.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -58,7 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Examples\CustomRenderExample.cs" />
-    <Compile Include="GetData.cs" />
+    <Compile Include="Nodes\DeconstructMesh.cs" />
+    <Compile Include="Nodes\PushData.cs" />
+    <Compile Include="Nodes\ReceiveData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Wrappers\Geometry\MeshWrapper .cs" />
   </ItemGroup>

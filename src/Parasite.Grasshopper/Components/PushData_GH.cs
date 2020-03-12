@@ -13,18 +13,21 @@ using Parasite.Core.Data.CollectData;
 using Grasshopper.Kernel.Types;
 using Parasite.Core.Types.Geometry;
 using Rhino.Geometry.Collections;
+using Parasite.Core.Data.CollectDataFromApplication;
+using Parasite.Core.Collections;
+
 
 namespace Parasite.Grasshopper
 {
-    public class Sender : GH_Component, IGH_VariableParameterComponent
+    public class PushData_GH : GH_Component, IGH_VariableParameterComponent
     {
-
+        FromGrasshopper fromGrasshopper = new FromGrasshopper();
        
 
         /// <summary>
         /// Initializes a new instance of the Send class.
         /// </summary>
-        public Sender()
+        public PushData_GH()
           : base("Send", "Send",
               "Send data ",
               "Parasite.IO", "Push")
@@ -91,11 +94,11 @@ namespace Parasite.Grasshopper
             // and assign it to _dataContainers
             for (int i = 0; i < _dataContainers.Count; i++)
             {
-                DA.GetDataList(indexes[i],  _dataContainers[i].data);
+                DA.GetDataList(indexes[i], _dataContainers[i].data);
             }
 
 
-            DataContainer dc = FromGrasshopper.RetreiveData(_dataContainers);
+            DataContainer dc = fromGrasshopper.CollectDataFromApplication(_dataContainers);
 
             PushData pd = new PushData();
 
@@ -145,6 +148,8 @@ namespace Parasite.Grasshopper
         {
             //throw new NotImplementedException();
         }
+
+       
 
         /// <summary>
         /// Provides an Icon for the component.
