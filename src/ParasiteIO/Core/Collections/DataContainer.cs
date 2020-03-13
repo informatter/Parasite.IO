@@ -18,19 +18,17 @@ namespace Parasite.Core.Collections
     [Serializable]
     public struct DataContainer
     {
-       
 
-     
 
         private DataNode<ParasiteObject>[][] m_Data;
 
         //private string m_id;
-        
+
         public DataContainer(int n) => m_Data = new DataNode<ParasiteObject>[n][];
 
         public DataNode<ParasiteObject>[][] Data { get => m_Data; }
 
-       // public string ID { get => m_id; }
+        // public string ID { get => m_id; }
 
 
 

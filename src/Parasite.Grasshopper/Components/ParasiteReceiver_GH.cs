@@ -77,7 +77,7 @@ namespace Parasite.Grasshopper.Components
                 Name = "Data" + " " + index.ToString(),
                 NickName = "Data" + " " + index.ToString(),
                 Description = "A data stream",
-               // Optional = true,
+                // Optional = true,
                 Access = GH_ParamAccess.list
 
             };

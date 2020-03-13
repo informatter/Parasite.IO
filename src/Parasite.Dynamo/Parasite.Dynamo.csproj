@@ -21,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Parasite.Dynamo.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,94 +31,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Analysis, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.DynamoCoreNodes.2.5.0.7432\lib\net47\Analysis.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="CoreNodeModels, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.2.5.0.7432\lib\net47\CoreNodeModels.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="CoreNodeModelsWpf, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.2.5.0.7432\lib\net47\CoreNodeModelsWpf.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DesignScriptBuiltin, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\DesignScriptBuiltin.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DSCoreNodes, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.DynamoCoreNodes.2.5.0.7432\lib\net47\DSCoreNodes.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DSIronPython, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\DSIronPython.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamoApplications, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\DynamoApplications.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamoCore, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\DynamoCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamoCoreWpf, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.2.5.0.7432\lib\net47\DynamoCoreWpf.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamoInstallDetective, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\DynamoInstallDetective.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DynamoServices, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.DynamoServices.2.5.0.7432\lib\net47\DynamoServices.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamoShapeManager, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\DynamoShapeManager.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.5.0.7432\lib\net47\DynamoUnits.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DynamoUtilities, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\DynamoUtilities.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="GeometryColor, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.DynamoCoreNodes.2.5.0.7432\lib\net47\GeometryColor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Expression.Interactions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Parasite.IO">
       <HintPath>..\..\..\..\..\..\..\AppData\Roaming\Grasshopper\Libraries\Parasite.IO\Parasite.IO.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="ProtoCore, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\ProtoCore.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="ProtoGeometry, Version=2.5.0.5835, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.5.0.7432\lib\net47\ProtoGeometry.dll</HintPath>
@@ -140,29 +61,19 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="VMDataBridge, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\VMDataBridge.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Examples\CustomRenderExample.cs" />
-    <Compile Include="Nodes\DeconstructMesh.cs" />
-    <Compile Include="Nodes\ParasiteSender.cs" />
-    <Compile Include="Nodes\ParasiteReceiver.cs" />
-    <Compile Include="Nodes\SelectCategories.cs" />
+    <Compile Include="ParasiteReceiver.cs" />
+    <Compile Include="ParasiteSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectCategories.cs" />
     <Compile Include="Wrappers\Geometry\MeshWrapper .cs" />
   </ItemGroup>
   <ItemGroup>

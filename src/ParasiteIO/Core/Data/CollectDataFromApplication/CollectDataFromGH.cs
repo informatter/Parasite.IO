@@ -17,12 +17,12 @@ namespace Parasite.Core.Data.CollectDataFromApplication
     /// <summary>
     /// 
     /// </summary>
-    public class CollectDataFromGH: IApplicationDataCollector
+    public class CollectDataFromGH : IApplicationDataCollector
     {
 
-        public  DataContainer CollectData(List<List<object>>  dataFromApp)
+        public DataContainer CollectData(List<List<object>> dataFromApp)
         {
-          
+
             DataContainer dataContainer = new DataContainer(dataFromApp.Count);
 
             for (int i = 0; i < dataFromApp.Count; i++)
@@ -31,7 +31,7 @@ namespace Parasite.Core.Data.CollectDataFromApplication
 
                 for (int j = 0; j < dataFromApp[i].Count; j++)
                 {
-                
+
                     if (dataFromApp[i][j] is GH_Point p)
                     {
                         if (p.CastTo(out Point3d pt))
@@ -66,14 +66,14 @@ namespace Parasite.Core.Data.CollectDataFromApplication
 
                         if (brep.IsSurface && !brep.IsSolid)
                         {
-                            
+
                             Parasite_BrepSurface parasiteBrepSrf = ParasiteConversion.ToParasiteType(brep);
                             nodeArray[j] = new DataNode<ParasiteObject>(parasiteBrepSrf);
                         }
 
                         if (!brep.IsSurface && brep.IsSolid)
                         {
-                           // dataContainer.Data.Add(new Parasite_BrepSolid(brep));
+                            // dataContainer.Data.Add(new Parasite_BrepSolid(brep));
                         }
                     }
 
@@ -85,7 +85,7 @@ namespace Parasite.Core.Data.CollectDataFromApplication
                         nodeArray[j] = new DataNode<ParasiteObject>(parasiteMesh);
                     }
 
-                    
+
                     /// CONNVERT GH_CURVE TO PARASITE CURVE
                     else if (dataFromApp[i][j] is GH_Curve curve)
                     {
@@ -123,7 +123,7 @@ namespace Parasite.Core.Data.CollectDataFromApplication
 
                     }
 
-                  
+
 
                     else
                     {

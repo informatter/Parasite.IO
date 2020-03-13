@@ -23,7 +23,7 @@ namespace Parasite.Dynamo.Nodes
     public class SelectCategories
     {
         readonly static Document DOC = DocumentManager.Instance.CurrentDBDocument;
-        readonly static Options OP = new Options();   
+        readonly static Options OP = new Options();
         private SelectCategories() { }
 
 
@@ -32,14 +32,14 @@ namespace Parasite.Dynamo.Nodes
         /// </summary>
         /// <param name="category"></param>
         /// <returns></returns>
-        
+
         public static List<DynamoSolid> SelectElementsFromCategory(DynamoCat category)
         {
             // Get specific elements from model by category
 
             ElementId targetCatId = new ElementId(category.Id);
-         
-            List<Element> elements = new FilteredElementCollector(DOC).OfCategoryId(targetCatId)   
+
+            List<Element> elements = new FilteredElementCollector(DOC).OfCategoryId(targetCatId)
             .Cast<Element>().ToList();
 
             List<DynamoSolid> geo = new List<DynamoSolid>();
@@ -49,7 +49,7 @@ namespace Parasite.Dynamo.Nodes
 
                 if (elements[i].Category.Id == targetCatId)
                 {
-                   GeometryElement geoE = elements[i].get_Geometry(OP);
+                    GeometryElement geoE = elements[i].get_Geometry(OP);
 
                     if (geoE == null) continue;
 
@@ -62,7 +62,7 @@ namespace Parasite.Dynamo.Nodes
                         geo.Add(s.ToProtoType());
                     }
 
-                    
+
                 }
             }
 

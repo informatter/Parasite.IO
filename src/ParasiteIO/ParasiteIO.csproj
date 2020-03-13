@@ -66,19 +66,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Collections\DataContainer.cs" />
+    <Compile Include="Core\Collections\DataNode.cs" />
+    <Compile Include="Core\Data\CollectDataFromApplication\CollectDataFromDyn.cs" />
     <Compile Include="Conversion\Dynamo\DynamoConversion_Parasite.cs" />
     <Compile Include="Conversion\Dynamo\DynamoConversion_Rhino.cs" />
     <Compile Include="Conversion\Dynamo\ToDynamoExtensions.cs" />
-    <Compile Include="Conversion\Rhinoceros\RhinoConversion.cs" />
     <Compile Include="Conversion\Parasite\ParasiteConversion.cs" />
     <Compile Include="Conversion\Revit\ToRevit.cs" />
-    <Compile Include="Core\Data\CollectDataFromApplication\CollectDataFromDyn.cs" />
-    <Compile Include="Core\Data\CollectDataFromApplication\IApplicationDataCollector.cs" />
     <Compile Include="Core\Data\CollectDataFromApplication\CollectDataFromGH.cs" />
-    <Compile Include="Core\Collections\DataNode.cs" />
-    <Compile Include="Core\Collections\DataContainer.cs" />
+    <Compile Include="Core\Data\CollectDataFromApplication\IApplicationDataCollector.cs" />
     <Compile Include="Core\Data\ReceiveDataFromParasite\IReceiveData.cs" />
-    <Compile Include="Core\Data\ReceiveDataFromParasite\ToDynamo.cs" />
     <Compile Include="Core\Data\ReceiveDataFromParasite\ToGrasshopper.cs" />
     <Compile Include="Core\Exceptions\ParasiteExceptions.cs" />
     <Compile Include="Core\Types\Display\Parasite_Color.cs" />
@@ -93,6 +91,7 @@
     <Compile Include="Core\Types\Geometry\Parasite_NurbsSurface.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_Point3d.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_Polyline.cs" />
+    <Compile Include="Conversion\Rhinoceros\RhinoConversion.cs" />
     <Compile Include="Sync\FolderInfo.cs" />
     <Compile Include="Sync\IPushData.cs" />
     <Compile Include="Sync\IRequestData.cs" />

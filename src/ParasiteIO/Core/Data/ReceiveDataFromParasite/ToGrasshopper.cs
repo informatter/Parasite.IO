@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,7 +37,7 @@ namespace Parasite.Core.Data.ReceiveDataFromParasite
                 {
                     if (dataContainer.Data[i][j].Node == null) continue;
 
-                    if(dataContainer.Data[i][j].Node is Parasite_Mesh mesh)
+                    if (dataContainer.Data[i][j].Node is Parasite_Mesh mesh)
                     {
                         throw new ParasiteNotImplementedExceptions(" type Not implemented Yet!");
                     }
@@ -60,7 +59,7 @@ namespace Parasite.Core.Data.ReceiveDataFromParasite
                 }
             }
 
-         
+
 
 
             return outPut;

@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 //using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +38,7 @@ namespace Parasite.Dynamo.Nodes
         /// <param name="data"></param>
         /// <returns>Pushed @ </returns>
         [IsVisibleInDynamoLibrary(false)]
-        private string Push(string ID, params List<object> [] data)
+        private string Push(string ID, params List<object>[] data)
         {
             List<List<object>> dataContainers = new List<List<object>>();
 

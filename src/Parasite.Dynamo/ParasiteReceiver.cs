@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 
 using Parasite.Core.Sync;
@@ -10,9 +11,10 @@ using Parasite.Core.Exceptions;
 
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
-using Dynamo.Graph.Nodes;
-using ProtoCore.AST.AssociativeAST;
-using Dynamo.Wpf;
+//using Dynamo.Graph.Nodes;
+//using ProtoCore.AST.AssociativeAST;
+//using Dynamo.Wpf;
+
 
 
 
@@ -24,25 +26,23 @@ namespace Parasite.Dynamo
     /// </summary>
     /// 
 
-    [NodeName("Parasite Receiver")]
-    [NodeDescription("Receives data from an external application")]
-    [NodeCategory("Parasite.ReceiveData")]
+    //[NodeName("Parasite Receiver")]
+    //[NodeDescription("Receives data from an external application")]
+    //[NodeCategory("Parasite.ReceiveData")]
 
-    [OutPortNames("Report")]
-    [OutPortDescriptions("OutToolTip0")]
-    [OutPortTypes("Report")]
-    public class ParasiteReceiver : VariableInputNode//: IReceiveData
+    //[OutPortNames("Report")]
+    //[OutPortDescriptions("OutToolTip0")]
+    //[OutPortTypes("Report")]
+    public class ParasiteReceiver //: VariableInputNode//: IReceiveData
     {
         private ParasiteReceiver()
         {
- 
+
 
         }
 
 
-   
 
-        
         /// <summary>
         /// 
         /// </summary>
@@ -87,57 +87,53 @@ namespace Parasite.Dynamo
         }
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        protected override string GetInputName(int index)
-        {
-            return "Data" + index;
-        }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <returns></returns>
+        //protected override string GetInputName(int index)
+        //{
+        //    return "Data" + index;
+        //}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        protected override string GetInputTooltip(int index)
-        {
-            return "Foo" + index;
-        }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <returns></returns>
+        //protected override string GetInputTooltip(int index)
+        //{
+        //    return "Foo" + index;
+        //}
 
-    //    public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
-    //    {
-    //        if (IsPartiallyApplied)
-    //        {
-    //            return new[]
-    //            {
-    //                AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode())
-    //            };
-    //        }
+        //    public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
+        //    {
+        //        if (IsPartiallyApplied)
+        //        {
+        //            return new[]
+        //            {
+        //                AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode())
+        //            };
+        //        }
 
-    //        AssociativeNode listNode = AstFactory.BuildExprList(inputAstNodes);
+        //        AssociativeNode listNode = AstFactory.BuildExprList(inputAstNodes);
 
-    //        var functionCall =
-    //            AstFactory.BuildFunctionCall(
-    //                new Func<List<object>, D3jsLib.Report>(MandrillTypes.Utilities.CreateGridsterReport),
-    //                new List<AssociativeNode> { listNode });
+        //        var functionCall =
+        //            AstFactory.BuildFunctionCall(
+        //                new Func<List<object>, D3jsLib.Report>(MandrillTypes.Utilities.CreateGridsterReport),
+        //                new List<AssociativeNode> { listNode });
 
-    //        return new[]
-    //        {
-    //            AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall),
-    //        };
-    //    }
-    //}
+        //        return new[]
+        //        {
+        //            AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall),
+        //        };
+        //    }
+        //}
+
+
+    }
+
 
 
 }
-
-
-
-}
-    
-
-  
-

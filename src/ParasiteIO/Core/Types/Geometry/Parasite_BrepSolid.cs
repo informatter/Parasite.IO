@@ -37,13 +37,13 @@ namespace Parasite.Core.Types.Geometry
         #endregion
 
         #region PROPERTIES
-        public Parasite_BrepSurface [] Faces { get => m_faces; }
+        public Parasite_BrepSurface[] Faces { get => m_faces; }
 
         #endregion
 
         #region METHODS
 
-     
+
         #endregion
 
 

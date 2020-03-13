@@ -32,18 +32,18 @@ namespace Parasite.Core.Data.CollectData
                     if (dataFromApp[i][j] is Point p)
                     {
                         Parasite_Point3d point = ParasiteConversion.ToParasiteType(p);
-                        nodeArray[j] = new DataNode<ParasiteObject>(point); 
-                  
+                        nodeArray[j] = new DataNode<ParasiteObject>(point);
+
                     }
 
                     else if (dataFromApp[i][j] is Sphere sph)
                     {
                         Parasite_Sphere s = new Parasite_Sphere(ParasiteConversion.ToParasiteType(sph.CenterPoint), sph.Radius);
                         nodeArray[j] = new DataNode<ParasiteObject>(s);
-              
+
                     }
 
-                    else if(dataFromApp[i][j] is Solid solid)
+                    else if (dataFromApp[i][j] is Solid solid)
                     {
                         Parasite_BrepSolid pSolid = ParasiteConversion.ToParasiteType(solid);
                         nodeArray[j] = new DataNode<ParasiteObject>(pSolid);

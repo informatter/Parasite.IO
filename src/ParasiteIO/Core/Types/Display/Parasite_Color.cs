@@ -10,7 +10,7 @@ namespace Parasite.Core.Types.Display
     /// <summary>
     /// loose Re-implementation of the System.Drawing.Color class in .NET
     /// </summary>
-    
+
     [Serializable]
     public class Parasite_Color
     {
@@ -19,9 +19,9 @@ namespace Parasite.Core.Types.Display
         private double m_g;
         private double m_b;
 
-     
 
-        public Parasite_Color(double A ,double R, double G, double B)
+
+        public Parasite_Color(double A, double R, double G, double B)
         {
             this.m_r = (R > 255) ? 255 : ((R < 0) ? 0 : R);
             this.m_g = (G > 255) ? 255 : ((G < 0) ? 0 : G);
@@ -32,7 +32,7 @@ namespace Parasite.Core.Types.Display
 
         public Parasite_Color()
         {
-            
+
         }
 
         public double A { get => m_a; }
@@ -44,3 +44,4 @@ namespace Parasite.Core.Types.Display
 
     }
 }
+
