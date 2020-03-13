@@ -9,6 +9,6 @@ namespace Parasite.Core.Data.CollectDataFromApplication
 {
     public interface IApplicationDataCollector
     {
-        DataContainer CollectDataFromApplication(List<DataContainerFactory> dataFromApp);
+        DataContainer CollectData(List<List<object>> dataFromApp);
     }
 }

@@ -12,6 +12,9 @@ using Autodesk.DesignScript.Runtime;
 
 namespace Parasite.Dynamo.Wrappers.Geometry
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MeshWrapper : IGraphicItem
     {
 
@@ -19,6 +22,13 @@ namespace Parasite.Dynamo.Wrappers.Geometry
          Autodesk.DesignScript.Geometry.Point[] m_vertices;
          Color[] m_vertexColors;
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="normals"></param>
+        /// <param name="vertices"></param>
+        /// <param name="vertexColors"></param>
         [IsVisibleInDynamoLibrary(false)]
         public MeshWrapper(Vector[] normals, Autodesk.DesignScript.Geometry.Point[] vertices, Color[] vertexColors)
         {

@@ -25,7 +25,7 @@ namespace Parasite.Core.Sync
         public  DataContainer RequestDataLocal(string fileName) 
         {
 
-            DataContainer data = null;
+            DataContainer data = new DataContainer();
 
             // Get full path, includes fileName
             string pathToFolder = Path.Combine(FolderInfo.dirPath, fileName);

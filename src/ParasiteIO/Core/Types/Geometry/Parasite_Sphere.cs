@@ -9,6 +9,8 @@ using Parasite.Core.Types.Display;
 
 namespace Parasite.Core.Types.Geometry
 {
+
+    [Serializable]
     public class Parasite_Sphere: ParasiteObject
     {
 

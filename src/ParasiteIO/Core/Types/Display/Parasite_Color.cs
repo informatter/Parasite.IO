@@ -10,6 +10,8 @@ namespace Parasite.Core.Types.Display
     /// <summary>
     /// loose Re-implementation of the System.Drawing.Color class in .NET
     /// </summary>
+    
+    [Serializable]
     public class Parasite_Color
     {
         private double m_a;

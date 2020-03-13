@@ -219,18 +219,20 @@ namespace Parasite.Conversion.Dynamo
         /// <returns></returns>
         public static Autodesk.DesignScript.Geometry.Solid ToDynamoType( Parasite_BrepSolid brep)
         {
-            Parasite_Point3d[][] vertices = brep.Vertices;
+            //Parasite_Point3d[][] vertices = brep.Vertices;
 
-            List<Autodesk.DesignScript.Geometry.Surface> surfaces = new List<Autodesk.DesignScript.Geometry.Surface>();
+            //List<Autodesk.DesignScript.Geometry.Surface> surfaces = new List<Autodesk.DesignScript.Geometry.Surface>();
 
-            for (int i = 0; i < vertices.Length; i++)
-            {
-                IEnumerable<Autodesk.DesignScript.Geometry.Point> pts = vertices[i].Select(x => ToDynamoType(x));
-                surfaces.Add(Autodesk.DesignScript.Geometry.Surface.ByPerimeterPoints(pts));
-            }
+            //for (int i = 0; i < vertices.Length; i++)
+            //{
+            //    IEnumerable<Autodesk.DesignScript.Geometry.Point> pts = vertices[i].Select(x => ToDynamoType(x));
+            //    surfaces.Add(Autodesk.DesignScript.Geometry.Surface.ByPerimeterPoints(pts));
+            //}
 
 
-            return Autodesk.DesignScript.Geometry.Solid.ByJoinedSurfaces(surfaces);
+            //return Autodesk.DesignScript.Geometry.Solid.ByJoinedSurfaces(surfaces);
+
+            throw new NotImplementedException();
         }
 
         #endregion

@@ -61,7 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\PushData_GH.cs" />
+    <Compile Include="Components\ParasiteReceiver_GH.cs" />
+    <Compile Include="Components\ParasiteSender_GH.cs" />
     <Compile Include="Parasite.IO.GrasshopperInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -139,6 +139,8 @@ namespace Parasite.Conversion.Parasite
             return new Parasite_BrepSurface(vertices, properties); 
         }
 
+        
+
         #endregion
 
         #region BREPS - SOLID
@@ -148,6 +150,71 @@ namespace Parasite.Conversion.Parasite
             return new Parasite_Sphere(ToParasiteType(sphere.CenterPoint), sphere.Radius, ToParasiteType(color), properties);
 
        }
+
+
+        /// <summary>
+        /// Converts a Dynamo Solid to a Parasite Brep Solid.
+        /// This method iterates through all the faces of the Dynamo Solid,
+        /// extracts their vertices and computes a new Parasite Brep Surface from them.
+        /// Each Parasite Brep Surface is sequentially added to a Collection as input for constructing 
+        /// a Parasite Brep Solid
+        /// </summary>
+        /// <param name="solid"></param>
+        /// <param name="properties"></param>
+        /// <returns></returns>
+        public static Parasite_BrepSolid ToParasiteType(Autodesk.DesignScript.Geometry.Solid solid, Dictionary<string, string> properties = null)
+        {
+            Autodesk.DesignScript.Geometry.Face[] faces = solid.Faces;
+
+            Parasite_BrepSurface[] brepSurfs = new Parasite_BrepSurface[faces.Length];
+
+            for (int i = 0; i < faces.Length; i++)
+            {
+                Autodesk.DesignScript.Geometry.Vertex[] vertices = faces[i].Vertices;
+
+                Parasite_Point3d[] arra = new Parasite_Point3d[vertices.Length];
+                for (int j = 0; j < vertices.Length; j++)
+                {
+                    arra[j] = ToParasiteType(vertices[j].PointGeometry);
+                }
+
+                Parasite_BrepSurface brepSrf = new Parasite_BrepSurface(arra, properties);
+                brepSurfs[i] = brepSrf;
+
+                //Parasite_BrepSurface parasite_BrepSrf;
+                //if (vertices.Length == 4)
+                //{
+                //    Parasite_Point3d[] arr = new Parasite_Point3d[] {
+                //     ToParasiteType(vertices[0].PointGeometry),
+                //    ToParasiteType(vertices[1].PointGeometry),
+                //    ToParasiteType(vertices[2].PointGeometry),
+                //    ToParasiteType(vertices[3].PointGeometry)
+                //    };
+
+                //     parasite_BrepSrf = new Parasite_BrepSurface(arr, properties);
+                //    brepSurfs[i] = (parasite_BrepSrf);
+                //}
+
+                //if (vertices.Length == 3)
+                //{
+                //    Parasite_Point3d[] arr = new Parasite_Point3d[] {
+                //     ToParasiteType(vertices[0].PointGeometry),
+                //    ToParasiteType(vertices[1].PointGeometry),
+                //    ToParasiteType(vertices[2].PointGeometry),
+                //    };
+
+                //    parasite_BrepSrf = new Parasite_BrepSurface(arr, properties);
+                //    brepSurfs[i] = parasite_BrepSrf;
+                //}
+
+                //else
+                //    throw new ParasiteArgumentException("Dynamo Face had more than 4 vertices! This is not handled in the code currently");
+            }
+
+           return  new Parasite_BrepSolid(brepSurfs, properties);
+
+            
+        }
 
         #endregion
 

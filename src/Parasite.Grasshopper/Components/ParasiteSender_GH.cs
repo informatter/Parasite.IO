@@ -19,18 +19,18 @@ using Parasite.Core.Collections;
 
 namespace Parasite.Grasshopper
 {
-    public class PushData_GH : GH_Component, IGH_VariableParameterComponent
+    public class ParasiteSender_GH : GH_Component, IGH_VariableParameterComponent
     {
-        FromGrasshopper fromGrasshopper = new FromGrasshopper();
+        CollectDataFromGH fromGrasshopper = new CollectDataFromGH();
        
 
         /// <summary>
         /// Initializes a new instance of the Send class.
         /// </summary>
-        public PushData_GH()
+        public ParasiteSender_GH()
           : base("Send", "Send",
               "Send data ",
-              "Parasite.IO", "Push")
+              "Parasite.IO", "Send Data")
         {
         }
 
@@ -60,22 +60,17 @@ namespace Parasite.Grasshopper
 
             bool _send = false;
             string _id = "";
+            int threshold = 0;
 
             DA.GetData(0, ref _send);
-            DA.GetData(1, ref _id);
+            DA.GetData(1, ref _id);           
 
-            int threshold = 0;
-            int inputCount = 0;
-
-            for (int i = 0; i < Params.Input.Count; i++)
-            {
+            for (int i = 0; i < Params.Input.Count; i++)            
                 if (Params.Input[i].Name != "Data") threshold++;
-                if (Params.Input[i].Name == "Data") inputCount++;
-            }
 
+            
             List<int> indexes = new List<int>();
-         
-            List<DataContainerFactory> _dataContainers = new List<DataContainerFactory>();
+            List<List<object>> dataContainerTemp = new List<List<object>>();
 
             // Iterate through params and find ZUI parameters (if there are any)
             for (int i = 0; i < Params.Input.Count; i++)
@@ -83,8 +78,7 @@ namespace Parasite.Grasshopper
                 if (i > threshold - 1)
                 {
                     // Set temp data
-                    List<object> s = new List<object>();
-                    _dataContainers.Add(new DataContainerFactory(s));
+                    dataContainerTemp.Add(new List<object>());
                     indexes.Add(i);
                 }
             }
@@ -92,13 +86,11 @@ namespace Parasite.Grasshopper
 
             // Retrieve data from ZUI parameters ( if there are any)
             // and assign it to _dataContainers
-            for (int i = 0; i < _dataContainers.Count; i++)
-            {
-                DA.GetDataList(indexes[i], _dataContainers[i].data);
-            }
+            for (int i = 0; i < dataContainerTemp.Count; i++)            
+                DA.GetDataList(indexes[i], dataContainerTemp[i]);
+            
 
-
-            DataContainer dc = fromGrasshopper.CollectDataFromApplication(_dataContainers);
+            DataContainer dc = fromGrasshopper.CollectData(dataContainerTemp);
 
             PushData pd = new PushData();
 

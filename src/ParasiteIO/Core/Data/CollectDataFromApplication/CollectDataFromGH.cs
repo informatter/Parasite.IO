@@ -17,32 +17,32 @@ namespace Parasite.Core.Data.CollectDataFromApplication
     /// <summary>
     /// 
     /// </summary>
-    public class FromGrasshopper : IApplicationDataCollector
+    public class CollectDataFromGH: IApplicationDataCollector
     {
 
-        public  DataContainer CollectDataFromApplication(List<DataContainerFactory> dataFromApp)
+        public  DataContainer CollectData(List<List<object>>  dataFromApp)
         {
-            DataContainer dataContainer = new DataContainer();
+          
+            DataContainer dataContainer = new DataContainer(dataFromApp.Count);
 
             for (int i = 0; i < dataFromApp.Count; i++)
             {
+                DataNode<ParasiteObject>[] nodeArray = new DataNode<ParasiteObject>[dataFromApp[i].Count];
 
-                for (int j = 0; j < dataFromApp[i].data.Count; j++)
+                for (int j = 0; j < dataFromApp[i].Count; j++)
                 {
-
-                    if (dataFromApp[i].data[j] is GH_Point p)
+                
+                    if (dataFromApp[i][j] is GH_Point p)
                     {
                         if (p.CastTo(out Point3d pt))
                         {
                             Parasite_Point3d point = ParasiteConversion.ToParasiteType(pt);
+                            nodeArray[j] = new DataNode<ParasiteObject>(point);
 
-                            DataNode<ParasiteObject> node = new DataNode<ParasiteObject>(point);
-
-                            dataContainer.Data.Add(j, node);
                         }
                     }
 
-                    else if (dataFromApp[i].data[j] is GH_Surface srf)
+                    else if (dataFromApp[i][j] is GH_Surface srf)
                     {
                         Brep brep = srf.Value;
 
@@ -52,18 +52,15 @@ namespace Parasite.Core.Data.CollectDataFromApplication
 
                             if (srfList.Count == 1)
                             {
-                              
-                                Parasite_NurbsSurface point = ParasiteConversion.ToParasiteType(srfList[0].ToNurbsSurface());
 
-                                DataNode<ParasiteObject> node = new DataNode<ParasiteObject>(point);
-
-                                dataContainer.Data.Add(j, node);
+                                Parasite_NurbsSurface paraSrf = ParasiteConversion.ToParasiteType(srfList[0].ToNurbsSurface());
+                                nodeArray[j] = new DataNode<ParasiteObject>(paraSrf);
                             }
                         }
                     }
 
 
-                    else if (dataFromApp[i].data[j] is GH_Brep b)
+                    else if (dataFromApp[i][j] is GH_Brep b)
                     {
                         Brep brep = b.Value;
 
@@ -71,10 +68,7 @@ namespace Parasite.Core.Data.CollectDataFromApplication
                         {
                             
                             Parasite_BrepSurface parasiteBrepSrf = ParasiteConversion.ToParasiteType(brep);
-
-                            DataNode<ParasiteObject> node = new DataNode<ParasiteObject>(parasiteBrepSrf);
-
-                            dataContainer.Data.Add(j, node);
+                            nodeArray[j] = new DataNode<ParasiteObject>(parasiteBrepSrf);
                         }
 
                         if (!brep.IsSurface && brep.IsSolid)
@@ -83,54 +77,46 @@ namespace Parasite.Core.Data.CollectDataFromApplication
                         }
                     }
 
-                    else if (dataFromApp[i].data[j] is GH_Mesh m)
+                    else if (dataFromApp[i][j] is GH_Mesh m)
                     {
                         Rhino.Geometry.Mesh mesh = m.Value;
 
                         Parasite_Mesh parasiteMesh = ParasiteConversion.ToParasiteType(mesh);
-
-                        DataNode<ParasiteObject> node = new DataNode<ParasiteObject>(parasiteMesh);
-
-                        dataContainer.Data.Add(j, node);
-
-            
+                        nodeArray[j] = new DataNode<ParasiteObject>(parasiteMesh);
                     }
 
                     
                     /// CONNVERT GH_CURVE TO PARASITE CURVE
-                    else if (dataFromApp[i].data[j] is GH_Curve curve)
+                    else if (dataFromApp[i][j] is GH_Curve curve)
                     {
                         Rhino.Geometry.NurbsCurve nc = curve.Value as NurbsCurve;
 
                         if (nc.IsArc())
                         {
-                            throw new NotImplementedException();
+                            throw new ParasiteNotImplementedExceptions("Object type not implemented yet!");
                         }
 
                         else if (nc.IsCircle())
                         {
-                            throw new NotImplementedException();
+                            throw new ParasiteNotImplementedExceptions("Object type not implemented yet!");
                         }
 
                         else if (nc.IsEllipse())
                         {
-                            throw new NotImplementedException();
+                            throw new ParasiteNotImplementedExceptions("Object type not implemented yet!");
 
                         }
 
                         else if (nc.IsPolyline())
                         {
-                            throw new NotImplementedException();
+                            throw new ParasiteNotImplementedExceptions("Object type not implemented yet!");
                         }
 
                         else
                         {
 
                             Parasite_NurbsCurve parasiteNurbsCurve = ParasiteConversion.ToParasiteType(nc);
-
-                            DataNode<ParasiteObject> node = new DataNode<ParasiteObject>(parasiteNurbsCurve);
-
-                            dataContainer.Data.Add(j, node);
+                            nodeArray[j] = new DataNode<ParasiteObject>(parasiteNurbsCurve);
                         }
 
 
@@ -146,7 +132,7 @@ namespace Parasite.Core.Data.CollectDataFromApplication
                 }
 
 
-
+                dataContainer.Data[i] = nodeArray;
             }
 
             return dataContainer;
