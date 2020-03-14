@@ -14,7 +14,7 @@ using DynamoCat = Revit.Elements.Category;
 using DynamoSolid = Autodesk.DesignScript.Geometry.Solid;
 
 
-namespace Parasite.Dynamo.Nodes
+namespace Parasite.Dynamo
 {
 
     /// <summary>
