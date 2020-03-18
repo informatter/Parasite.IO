@@ -7,6 +7,10 @@ using Rhino.Geometry;
 
 namespace Parasite.Grasshopper.Components
 {
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class ParasiteReceiver_GH : GH_Component, IGH_VariableParameterComponent
     {
         Parasite.Core.Data.ReceiveDataFromParasite.ToGrasshopper toGrasshopper = new Core.Data.ReceiveDataFromParasite.ToGrasshopper();
