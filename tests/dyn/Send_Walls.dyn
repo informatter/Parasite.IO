@@ -1,0 +1,121 @@
+{
+  "Uuid": "e239ed2a-310d-41cc-a141-42935dbc5756",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "DynamoToGH_Walls",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Parasite.Dynamo.SelectCategories.SelectElementsFromCategory@Revit.Elements.Category",
+      "Id": "f6c1445aef464d2ca221512afce66cdc",
+      "Inputs": [
+        {
+          "Id": "c8dfc81aaed440b0818fbd970937f4c3",
+          "Name": "category",
+          "Description": "Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "67e2ac3f03344041b3e0505da418879e",
+          "Name": "Solid[]",
+          "Description": "Solid[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "SelectCategories.SelectElementsFromCategory (category: Category): Solid[]"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 609,
+      "SelectedString": "OST_Walls",
+      "NodeType": "ExtensionNode",
+      "Id": "d72c1dc75fad4dab855f6744dea3ea5d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "17019c1f8e0642b1b25ff451f93d2d6d",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "17019c1f8e0642b1b25ff451f93d2d6d",
+      "End": "c8dfc81aaed440b0818fbd970937f4c3",
+      "Id": "10b26074b6404e92b46d45d95cef0f1e"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.1.0.7500",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "SelectCategories.SelectElementsFromCategory",
+        "Id": "f6c1445aef464d2ca221512afce66cdc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 300.5,
+        "Y": 250.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Categories",
+        "Id": "d72c1dc75fad4dab855f6744dea3ea5d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 99.5,
+        "Y": 249.0
+      }
+    ],
+    "Annotations": [],
+    "X": 86.467899454024291,
+    "Y": 61.238799098549009,
+    "Zoom": 0.78436932804482717
+  }
+}

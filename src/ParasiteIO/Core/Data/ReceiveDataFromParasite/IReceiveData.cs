@@ -8,6 +8,6 @@ namespace Parasite.Core.Data.ReceiveDataFromParasite
 {
     public interface IReceiveData
     {
-        List<object> ReceiveData(string ID);
+        List<object> ReceiveData(string ID, double tolerance);
     }
 }

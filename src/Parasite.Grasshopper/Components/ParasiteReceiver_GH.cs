@@ -11,6 +11,7 @@ namespace Parasite.Grasshopper.Components
     {
         Parasite.Core.Data.ReceiveDataFromParasite.ToGrasshopper toGrasshopper = new Core.Data.ReceiveDataFromParasite.ToGrasshopper();
 
+        double tolerance;
         /// <summary>
         /// Initializes a new instance of the ParasiteReceiver_GH class.
         /// </summary>
@@ -19,6 +20,7 @@ namespace Parasite.Grasshopper.Components
               "Receive data ",
               "Parasite.IO", "Receive Data")
         {
+           tolerance = Rhino.RhinoDoc.ActiveDoc.ModelAbsoluteTolerance;
         }
 
         /// <summary>
@@ -34,6 +36,7 @@ namespace Parasite.Grasshopper.Components
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
+            pManager.AddGenericParameter("Data", "Data", "Some data coming out of here..", GH_ParamAccess.list);
         }
 
         /// <summary>
@@ -44,15 +47,17 @@ namespace Parasite.Grasshopper.Components
         {
             string _id = "";
             DA.GetData(0, ref _id);
+        
+           List<List<object>>  data = toGrasshopper.ReceiveData(_id, tolerance);
 
-            List<object> data = toGrasshopper.ReceiveData(_id);
+            if (data.Count < Params.Output.Count)            
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "You have more incoming data than available outputs");
 
-            //for (int i = 0; i < Params.Output.Count; i++)
-            //{
-            //    DA.SetDataList(0, data);
-            //}
+           
+            for (int i = 0; i < Params.Output.Count; i++)
+                DA.SetDataList(i, data[i]);
+            
 
-            DA.SetDataList(0, data);
 
         }
 
@@ -77,7 +82,6 @@ namespace Parasite.Grasshopper.Components
                 Name = "Data" + " " + index.ToString(),
                 NickName = "Data" + " " + index.ToString(),
                 Description = "A data stream",
-                // Optional = true,
                 Access = GH_ParamAccess.list
 
             };

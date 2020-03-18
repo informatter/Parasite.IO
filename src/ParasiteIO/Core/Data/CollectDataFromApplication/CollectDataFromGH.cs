@@ -22,7 +22,7 @@ namespace Parasite.Core.Data.CollectDataFromApplication
 
         public DataContainer CollectData(List<List<object>> dataFromApp)
         {
-
+          
             DataContainer dataContainer = new DataContainer(dataFromApp.Count);
 
             for (int i = 0; i < dataFromApp.Count; i++)
@@ -38,7 +38,6 @@ namespace Parasite.Core.Data.CollectDataFromApplication
                         {
                             Parasite_Point3d point = ParasiteConversion.ToParasiteType(pt);
                             nodeArray[j] = new DataNode<ParasiteObject>(point);
-
                         }
                     }
 
