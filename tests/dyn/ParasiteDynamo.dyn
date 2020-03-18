@@ -1,0 +1,327 @@
+{
+  "Uuid": "2ffb2671-fdc7-40a2-8e58-c2a98c590820",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "ParasiteDynamo",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "GHBreps",
+      "Id": "a6cb9fbd57d54911a2ccb320848469c0",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d921d8bf78824fb68e100de34ed5f2b5",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Parasite.IO.Dynamo.GetData.Receive@string",
+      "Id": "7575c444258b432d9aad91bee32e3a72",
+      "Inputs": [
+        {
+          "Id": "068984871f104d03b2af5c34eb247015",
+          "Name": "id",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1ba5f2b2927a4f8ea29933848e6a0d85",
+          "Name": "var[]",
+          "Description": "var[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "GetData.Receive (id: string): var[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Surface.PointAtParameter@double,double",
+      "Id": "0e22f78cb06a415eb3e712beaf8914f2",
+      "Inputs": [
+        {
+          "Id": "bef061930026455396b4d90669a53ef6",
+          "Name": "surface",
+          "Description": "Autodesk.DesignScript.Geometry.Surface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2c180948e1ea4dddb94036e3c75c6e1a",
+          "Name": "u",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "672f1458669744adac8caf70c95c190f",
+          "Name": "v",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0a94de68e2474dffa758257eaeaedeaa",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Return the Point at specified U and V parameters.\n\nSurface.PointAtParameter (u: double = 0, v: double = 0): Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "0.5;",
+      "Id": "b134cb990b23403d99f0d050853b3337",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f5b51f185ea14297bbe0cfd2ab509d97",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Surface.NormalAtPoint@Autodesk.DesignScript.Geometry.Point",
+      "Id": "f95fb64079de4d98ac6e08d3e4f35036",
+      "Inputs": [
+        {
+          "Id": "9e9cabe9408b43dbb7b42675045fb68d",
+          "Name": "surface",
+          "Description": "Autodesk.DesignScript.Geometry.Surface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f53e76b0639748b7b19f5a337efef52b",
+          "Name": "point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4e17b5d4e20e45d7847bcb820e76745c",
+          "Name": "Vector",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Return the surface normal at the input Point on the Surface.\n\nSurface.NormalAtPoint (point: Point): Vector"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Surface.PerimeterCurves",
+      "Id": "342bce6158f44f7c8a5d8f0c8ac0cd56",
+      "Inputs": [
+        {
+          "Id": "81e24c46657a497582e5e55fa23167cb",
+          "Name": "surface",
+          "Description": "Autodesk.DesignScript.Geometry.Surface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dad5f85dca874cfc94aac17daa5776a8",
+          "Name": "Curve[]",
+          "Description": "Curve[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Return all the boundary Curves of the Surface.\n\nSurface.PerimeterCurves ( ): Curve[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "d921d8bf78824fb68e100de34ed5f2b5",
+      "End": "068984871f104d03b2af5c34eb247015",
+      "Id": "ad2d992522ee42a0aa8f576db16e198b"
+    },
+    {
+      "Start": "1ba5f2b2927a4f8ea29933848e6a0d85",
+      "End": "bef061930026455396b4d90669a53ef6",
+      "Id": "a576a692ea6a48719e9a8b7bbad56bc9"
+    },
+    {
+      "Start": "1ba5f2b2927a4f8ea29933848e6a0d85",
+      "End": "9e9cabe9408b43dbb7b42675045fb68d",
+      "Id": "27bafa15486e4140bcaa831862281492"
+    },
+    {
+      "Start": "1ba5f2b2927a4f8ea29933848e6a0d85",
+      "End": "81e24c46657a497582e5e55fa23167cb",
+      "Id": "08ecdc05f2d4434f98d67a6faca18a44"
+    },
+    {
+      "Start": "0a94de68e2474dffa758257eaeaedeaa",
+      "End": "f53e76b0639748b7b19f5a337efef52b",
+      "Id": "3836b64779d840eb86bb2a5c56b13901"
+    },
+    {
+      "Start": "f5b51f185ea14297bbe0cfd2ab509d97",
+      "End": "2c180948e1ea4dddb94036e3c75c6e1a",
+      "Id": "f5d6248efe0940669007995ac373f6a3"
+    },
+    {
+      "Start": "f5b51f185ea14297bbe0cfd2ab509d97",
+      "End": "672f1458669744adac8caf70c95c190f",
+      "Id": "0dec294f301643b28b547a98d3dae2a2"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.1.0.7500",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Default Camera",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "a6cb9fbd57d54911a2ccb320848469c0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 119.52420960838893,
+        "Y": 198.95913602437852
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "GetData.Receive",
+        "Id": "7575c444258b432d9aad91bee32e3a72",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 222.31960063038076,
+        "Y": 195.99861196556202
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Surface.PointAtParameter",
+        "Id": "0e22f78cb06a415eb3e712beaf8914f2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 465.47906259141257,
+        "Y": 318.72184637727617
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "b134cb990b23403d99f0d050853b3337",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 297.0,
+        "Y": 366.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Surface.NormalAtPoint",
+        "Id": "f95fb64079de4d98ac6e08d3e4f35036",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 613.7151595924496,
+        "Y": 184.19544620870505
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Surface.PerimeterCurves",
+        "Id": "342bce6158f44f7c8a5d8f0c8ac0cd56",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 725.317900294,
+        "Y": 347.61602355677132
+      }
+    ],
+    "Annotations": [],
+    "X": 76.795553680723174,
+    "Y": 208.17078361554076,
+    "Zoom": 0.84565493535498049
+  }
+}

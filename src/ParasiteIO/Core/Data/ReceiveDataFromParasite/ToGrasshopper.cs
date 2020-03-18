@@ -17,7 +17,7 @@ namespace Parasite.Core.Data.ReceiveDataFromParasite
     /// This class Receives data From Parasite and 
     /// converts it to Rhino/Grasshopper Geometry
     /// </summary>
-    public class ToGrasshopper : IReceiveData
+    public class ToGrasshopper // : IReceiveData
     {
 
         /// <summary>
@@ -25,14 +25,20 @@ namespace Parasite.Core.Data.ReceiveDataFromParasite
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        public List<object> ReceiveData(string ID)
+        public /*List<object>*/  List<List<object>> ReceiveData(string ID, double RhinoDocTol)
         {
-            List<object> outPut = new List<object>();
+            //List<object> outPut = new List<object>();
+
+            List<List<object>> outPut = new List<List<object>>();
+
+
             RequestData rd = new RequestData();
             DataContainer dataContainer = rd.RequestDataLocal(ID);
 
             for (int i = 0; i < dataContainer.Data.Length; i++)
             {
+                List<object> data = new List<object>();
+
                 for (int j = 0; j < dataContainer.Data[i].Length; j++)
                 {
                     if (dataContainer.Data[i][j].Node == null) continue;
@@ -44,12 +50,14 @@ namespace Parasite.Core.Data.ReceiveDataFromParasite
 
                     else if (dataContainer.Data[i][j].Node is Parasite_Sphere sph)
                     {
-                        outPut.Add(RhinoConversion.ToRhinoType(sph));
+                       // outPut.Add(RhinoConversion.ToRhinoType(sph));
                     }
 
                     else if (dataContainer.Data[i][j].Node is Parasite_BrepSolid brepSolid)
                     {
-                        outPut.Add(RhinoConversion.ToRhinoType(brepSolid));
+                       // outPut.Add(RhinoConversion.ToRhinoType(brepSolid, RhinoDocTol));
+
+                        data.Add(RhinoConversion.ToRhinoType(brepSolid, RhinoDocTol));
                     }
 
                     else
@@ -57,6 +65,8 @@ namespace Parasite.Core.Data.ReceiveDataFromParasite
                         throw new ParasiteNotImplementedExceptions(" type Not implemented Yet!");
                     }
                 }
+
+                outPut.Add(data);
             }
 
 

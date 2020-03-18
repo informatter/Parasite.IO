@@ -16,13 +16,13 @@ namespace Parasite.Core.Data.CollectData
 {
     public class CollectDataFromDyn : IApplicationDataCollector
     {
-        public DataContainer CollectData(List<List<object>> dataFromApp)
+        public DataContainer CollectData(List<List<object>>  dataFromApp)
         {
-            DataContainer dataContainer = new DataContainer(dataFromApp.Count);
+            DataContainer dataContainer = new DataContainer( dataFromApp.Count);
 
             for (int i = 0; i < dataFromApp.Count; i++)
             {
-                DataNode<ParasiteObject>[] nodeArray = new DataNode<ParasiteObject>[dataFromApp[i].Count];
+                DataNode<ParasiteObject>[] nodeArray = new DataNode<ParasiteObject>[ dataFromApp[i].Count];
 
                 for (int j = 0; j < dataFromApp[i].Count; j++)
                 {

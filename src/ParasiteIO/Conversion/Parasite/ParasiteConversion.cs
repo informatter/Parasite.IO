@@ -14,6 +14,10 @@ using Rhino.Geometry;
 using Rhino.Geometry.Collections;
 using System.Drawing;
 
+using Autodesk.DesignScript.Geometry;
+
+using DB = Autodesk.Revit.DB;
+
 namespace Parasite.Conversion.Parasite
 {
 
@@ -85,7 +89,40 @@ namespace Parasite.Conversion.Parasite
 
         #endregion
 
-        #region CURVES
+        #region CURVES/ LINES/ NURBSCURVES / ARCS /
+
+        #region LINES
+
+        public static IEnumerable<Parasite_Line> ToParasiteType( IEnumerable<Autodesk.DesignScript.Geometry.Curve> curves )
+        {
+
+            Parasite_Line[] output = new Parasite_Line[curves.Count()];
+
+            for (int i = 0; i < curves.Count(); i++)
+            {
+                Autodesk.DesignScript.Geometry.Curve crv = curves.ElementAt(i);
+
+                
+   
+                ////THIS IS FAILING IN DIFFERENT CASES FOR SOME REASON
+                //Vector tanVecStrt = crv.ToNurbsCurve().TangentAtParameter(0.25/*crv.StartParameter()*/);
+                //Vector tanVecEnd = crv.ToNurbsCurve().TangentAtParameter(0.50/*crv.EndParameter()*/);
+
+                //// TODO  WETHER CURVE IS LINEAR
+                //if (tanVecStrt.Dot(tanVecEnd) !=1.0)
+                //    throw new ParasiteArgumentException("Cant convert a Dynamo Curve to a Parasite_Line!");
+
+                ////THIS IS FAILING IN DIFFERENT CASES FOR SOME REASON
+
+                output[i] = new Parasite_Line(ToParasiteType(crv.StartPoint), ToParasiteType(crv.EndPoint), null);
+            }
+
+            return output;
+        }
+
+        #endregion
+
+
 
         public static Parasite_NurbsCurve ToParasiteType(Rhino.Geometry.NurbsCurve nurbsCurve, Dictionary<string, string> properties = null)
         {
@@ -125,7 +162,8 @@ namespace Parasite.Conversion.Parasite
 
             List<Parasite_Point3d> vertices = brep.Vertices.Select(x => x.Location).Where(y => y.IsValid).Select(z => ToParasiteType(z)).ToList();
 
-            return new Parasite_BrepSurface(vertices, properties); 
+
+            return new Parasite_BrepSurface(vertices,null,properties); 
         }
 
         #endregion
@@ -151,15 +189,32 @@ namespace Parasite.Conversion.Parasite
 
             for (int i = 0; i < faces.Length; i++)
             {
-                Autodesk.DesignScript.Geometry.Vertex[] vertices = faces[i].Vertices;
+                Autodesk.DesignScript.Geometry.Loop [] loops = faces[i].Loops;
 
-                Parasite_Point3d[] arra = new Parasite_Point3d[vertices.Length];
-                for (int j = 0; j < vertices.Length; j++)
+                List<Autodesk.DesignScript.Geometry.Curve> lines = new List<Autodesk.DesignScript.Geometry.Curve>();
+
+                for (int k = 0; k < loops.Length; k++)
                 {
-                    arra[j] = ToParasiteType(vertices[j].PointGeometry);
+                    Autodesk.DesignScript.Geometry.CoEdge[] coEdge = loops[k].CoEdges;
+
+
+                    for (int m = 0; m < coEdge.Length; m++)
+                    {
+                        lines.Add(coEdge[m].Edge.CurveGeometry);
+                    }
+
                 }
 
-                Parasite_BrepSurface brepSrf = new Parasite_BrepSurface(arra, properties);
+
+                Autodesk.DesignScript.Geometry.Vertex[] vertices = faces[i].Vertices;
+
+                Parasite_Point3d[] vertexArray = new Parasite_Point3d[vertices.Length];
+
+                for (int j = 0; j < vertices.Length; j++)               
+                    vertexArray[j] = ToParasiteType(vertices[j].PointGeometry);
+                
+
+                Parasite_BrepSurface brepSrf = new Parasite_BrepSurface(vertexArray, ToParasiteType(lines), properties);
                 brepSurfs[i] = brepSrf;
 
             }
@@ -168,12 +223,47 @@ namespace Parasite.Conversion.Parasite
 
 
         }
+
+
+        //public static Parasite_BrepSurface ToParasiteType(this DB.Face face, bool untrimmed = false)
+        //{
+        //    var surface = face.ToRhinoSurface();
+        //    if (surface is null)
+        //        return null;
+
+        //    var brep = Brep.CreateFromSurface(surface);
+        //    if (brep is null)
+        //        return null;
+
+
+        //    if (untrimmed)
+        //        return brep;
+
+        //    var loops = face.GetEdgesAsCurveLoops().ToRhino().ToArray();
+
+
+
+        //    try { return brep.TrimFaces(loops); }
+        //    finally { brep.Dispose(); }
+        //}
+
+
+        //public static Parasite_BrepSolid ToParasiteType(DB.Solid solid)
+        //{
+        //    return solid.Faces.
+        //           Cast<DB.Face>().
+        //           Select(x => x.ToRhino()).
+        //           ToArray().
+        //           JoinAndMerge(Revit.VertexTolerance);
+        //}
+
+
         #endregion
 
 
         #region NURBS SURFACE
 
-        public static Parasite_NurbsSurface ToParasiteType (NurbsSurface nurbsSurface, Dictionary<string, string> properties = null)
+        public static Parasite_NurbsSurface ToParasiteType (Rhino.Geometry.NurbsSurface nurbsSurface, Dictionary<string, string> properties = null)
         {
             Parasite_NurbsSurface parasite_NurbsSurface = null;
 

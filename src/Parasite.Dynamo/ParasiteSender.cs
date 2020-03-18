@@ -40,31 +40,34 @@ namespace Parasite.Dynamo
         [IsVisibleInDynamoLibrary(false)]
         private string Push(string ID, params List<object>[] data)
         {
-            List<List<object>> dataContainers = new List<List<object>>();
+
+
+            List<List<object>> containers = new List<List<object>>();
 
 
             for (int i = 0; i < data.Count(); i++)
             {
+
                 List<object> d = new List<object>();
                 for (int j = 0; j < data[i].Count; j++)
                 {
 
                     if (data[i][j] == null) continue;
 
-                    d.Add(data[i][j]);
+                    d.Add( data[i][j]);
 
                 }
 
-                dataContainers.Add(d);
+                containers.Add(d);
             }
 
-            DataContainer dc = fromDynamo.CollectData(dataContainers);
+            DataContainer dc = fromDynamo.CollectData(containers);
 
             PushData pd = new PushData();
 
             pd.PushDataLocal(dc, ID);
 
-            return "Pushed @" + Environment.NewLine + string.Format("{0:HH:mm:ss tt}", DateTime.Now);
+            return "Pushed @" +  string.Format("{0:HH:mm:ss tt}", DateTime.Now);
         }
 
     }

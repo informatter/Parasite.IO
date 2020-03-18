@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DynamoServices">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\AddIns\DynamoForRevit\DynamoServices.dll</HintPath>
+    </Reference>
     <Reference Include="Grasshopper">
       <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Rhino 6\Plug-ins\Grasshopper\Grasshopper.dll</HintPath>
       <Private>False</Private>
@@ -41,6 +44,10 @@
     </Reference>
     <Reference Include="ProtoGeometry">
       <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\AddIns\DynamoForRevit\ProtoGeometry.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPI">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitNodes">
@@ -83,6 +90,7 @@
     <Compile Include="Core\Types\Geometry\Parasite_BrepSolid.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_BrepSurface.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_Circle.cs" />
+    <Compile Include="Core\Types\Geometry\Parasite_Line.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_Mesh.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_NurbsCurve.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_Sphere.cs" />

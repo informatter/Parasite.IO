@@ -1,0 +1,120 @@
+{
+  "Uuid": "faf0b770-3b09-4f10-b4a0-d54bfa6d6410",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "NurbsCuves",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "GH_nurbsCurve",
+      "Id": "a5e91a5cea7c4d04ae237ced34c1b9f1",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "be7bbd9f6c1f4d2a9c3243379b6cd495",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Parasite.IO.Dynamo.GetData.Receive@string",
+      "Id": "555cbe1db4314ee6a9c604a37ae21436",
+      "Inputs": [
+        {
+          "Id": "596b6032f7c64d6794d83ab97f521d7f",
+          "Name": "id",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "da33746ea18048b4969716e57f862f36",
+          "Name": "var[]",
+          "Description": "var[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "GetData.Receive (id: string): var[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "be7bbd9f6c1f4d2a9c3243379b6cd495",
+      "End": "596b6032f7c64d6794d83ab97f521d7f",
+      "Id": "be85523b704444559d7efb613fa3b927"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.1.0.7500",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -14.100473258721898,
+      "EyeY": 63.930452738822147,
+      "EyeZ": -12.263728862157564,
+      "LookX": 25.253341529595922,
+      "LookY": -52.816261683524296,
+      "LookZ": -13.889244312891265,
+      "UpX": 0.66128957481132866,
+      "UpY": 0.65605902899052371,
+      "UpZ": -0.36370681699126373
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "a5e91a5cea7c4d04ae237ced34c1b9f1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -215.12876753629143,
+        "Y": 89.540237008640077
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "GetData.Receive",
+        "Id": "555cbe1db4314ee6a9c604a37ae21436",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -0.12876753629143423,
+        "Y": 63.540237008640077
+      }
+    ],
+    "Annotations": [],
+    "X": 431.20251301885094,
+    "Y": 84.219449856902131,
+    "Zoom": 0.72583335096493984
+  }
+}

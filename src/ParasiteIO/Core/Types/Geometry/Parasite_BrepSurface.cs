@@ -17,18 +17,19 @@ namespace Parasite.Core.Types.Geometry
 
    
         IEnumerable<Parasite_Point3d> m_vertices;
+        IEnumerable<Parasite_Line> m_edges;
 
 
         #endregion
 
         #region CONSTRUCTORS
 
-        public Parasite_BrepSurface(IEnumerable<Parasite_Point3d> vertices, Dictionary<string, string> properties = null) : base(properties)
+        public Parasite_BrepSurface(IEnumerable<Parasite_Point3d> vertices, IEnumerable<Parasite_Line> edges =null, Dictionary<string, string> properties = null) : base(properties)
         {
             base.Properties = properties;
             base.TypeName = GetType().Name;
             m_vertices = vertices;
-
+            m_edges = edges;
 
         }
 
@@ -37,7 +38,8 @@ namespace Parasite.Core.Types.Geometry
 
         #region PROPERTIES
         public IEnumerable<Parasite_Point3d> Vertices { get => m_vertices; }
-  
+        public IEnumerable<Parasite_Line> Edges { get => m_edges; }
+
 
 
         #endregion
