@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Rhino.Geometry;
+
 using Parasite.Core.Collections;
 using Parasite.Core.Sync;
 using Parasite.Core.Types.Geometry;
@@ -25,10 +27,10 @@ namespace Parasite.Core.Data.ReceiveDataFromParasite
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        public /*List<object>*/  List<List<object>> ReceiveData(string ID, double RhinoDocTol)
+        public  List<List<object>> ReceiveData(string ID, double RhinoDocTol)
         {
-            //List<object> outPut = new List<object>();
-
+            
+            
             List<List<object>> outPut = new List<List<object>>();
 
 
@@ -43,22 +45,18 @@ namespace Parasite.Core.Data.ReceiveDataFromParasite
                 {
                     if (dataContainer.Data[i][j].Node == null) continue;
 
-                    if (dataContainer.Data[i][j].Node is Parasite_Mesh mesh)
+                    if (dataContainer.Data[i][j].Node is Parasite_Mesh mesh)                  
+                        data.Add(RhinoConversion.ToRhinoType(mesh));
+                    
+
+                    else if (dataContainer.Data[i][j].Node is Parasite_Sphere sph)
                     {
                         throw new ParasiteNotImplementedExceptions(" type Not implemented Yet!");
                     }
 
-                    else if (dataContainer.Data[i][j].Node is Parasite_Sphere sph)
-                    {
-                       // outPut.Add(RhinoConversion.ToRhinoType(sph));
-                    }
-
                     else if (dataContainer.Data[i][j].Node is Parasite_BrepSolid brepSolid)
-                    {
-                       // outPut.Add(RhinoConversion.ToRhinoType(brepSolid, RhinoDocTol));
-
                         data.Add(RhinoConversion.ToRhinoType(brepSolid, RhinoDocTol));
-                    }
+                    
 
                     else
                     {

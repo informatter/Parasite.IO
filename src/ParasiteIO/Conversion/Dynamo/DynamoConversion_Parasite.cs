@@ -172,10 +172,10 @@ namespace Parasite.Conversion.Dynamo
         #region SURFACES
 
         /// <summary>
-        /// 
+        /// Converts a Parasite_BrepSurface object to a Dynamo Surface object
         /// </summary>
-        /// <param name="brep"></param>
-        /// <returns></returns>
+        /// <param name="brep">A Parasite_BrepSurface object </param>
+        /// <returns>A Dynamo Surface on success</returns>
         public static Autodesk.DesignScript.Geometry.Surface ToDynamoType( Parasite_BrepSurface brep)
         {
             IEnumerable<Autodesk.DesignScript.Geometry.Point> vertices = brep.Vertices.Select(x => ToDynamoType(x));

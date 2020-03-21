@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Parameters;
 using Rhino.Geometry;
+using Parasite.Core.Sync;
 
 namespace Parasite.Grasshopper.Components
 {
@@ -12,6 +13,8 @@ namespace Parasite.Grasshopper.Components
         Parasite.Core.Data.ReceiveDataFromParasite.ToGrasshopper toGrasshopper = new Core.Data.ReceiveDataFromParasite.ToGrasshopper();
 
         double tolerance;
+
+        FolderListener folderListener = new FolderListener();
         /// <summary>
         /// Initializes a new instance of the ParasiteReceiver_GH class.
         /// </summary>
@@ -57,7 +60,10 @@ namespace Parasite.Grasshopper.Components
             for (int i = 0; i < Params.Output.Count; i++)
                 DA.SetDataList(i, data[i]);
             
-
+            if(folderListener.CanExpire)
+            {
+                this.ExpireSolution(true);
+            }
 
         }
 

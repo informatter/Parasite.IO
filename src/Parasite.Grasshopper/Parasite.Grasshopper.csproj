@@ -33,8 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Parasite.IO">
-      <HintPath>..\..\..\..\..\..\..\AppData\Roaming\Grasshopper\Libraries\Parasite.IO\Parasite.IO.dll</HintPath>
+    <Reference Include="ParasiteIO">
+      <HintPath>..\ParasiteIO\bin\Debug\ParasiteIO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ProtoGeometry">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\AddIns\DynamoForRevit\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -61,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\ParasiteMesh_GH.cs" />
     <Compile Include="Components\ParasiteReceiver_GH.cs" />
     <Compile Include="Components\ParasiteSender_GH.cs" />
     <Compile Include="Parasite.IO.GrasshopperInfo.cs" />
