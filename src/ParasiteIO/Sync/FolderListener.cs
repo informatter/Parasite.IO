@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 using Parasite;
 namespace Parasite.Core.Sync
 {
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class FolderListener
     {
         private readonly FileSystemWatcher fileSystemWatcher;
