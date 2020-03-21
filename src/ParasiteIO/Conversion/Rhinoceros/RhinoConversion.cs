@@ -31,6 +31,45 @@ namespace Parasite.Conversion.Rhinoceros
 
         #region MESH
 
+        public static Mesh ToRhinoType(Parasite_Mesh pMesh)
+        {
+            int[][] faceIndexes = pMesh.FaceIndexes; 
+
+            Point3d [] vertices =  ToRhinoType(pMesh.Vertices).ToArray(); 
+
+            Mesh m = new Mesh();        
+
+            for (int i = 0; i < faceIndexes.Length; i++)
+            {
+
+                int indexA, indexB, indexC, indexD;
+
+                if (faceIndexes[i].Length == 3)
+                {
+                     indexA = faceIndexes[i][0];
+                     indexB = faceIndexes[i][1];
+                     indexC = faceIndexes[i][2];          
+                    m.Faces.AddFace(indexA, indexB, indexC);
+                }
+
+
+                if (faceIndexes[i].Length == 4)
+                {
+                     indexA = faceIndexes[i][0];
+                     indexB = faceIndexes[i][1];
+                     indexC = faceIndexes[i][2];
+                     indexD = faceIndexes[i][3];
+                    m.Faces.AddFace(indexA, indexB, indexC, indexD);
+                }
+
+                
+            }
+
+            m.Vertices.AddVertices(vertices);    
+
+            return m;
+        }
+
 
         #endregion
 

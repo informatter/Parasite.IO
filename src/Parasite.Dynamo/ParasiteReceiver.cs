@@ -1,6 +1,8 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Windows;
+using System.Threading.Tasks;
 
 using Parasite.Core.Sync;
 using Parasite.Dynamo.Wrappers.Geometry;
@@ -11,6 +13,7 @@ using Parasite.Core.Exceptions;
 
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
+using System.Windows.Forms;
 //using Dynamo.Graph.Nodes;
 //using ProtoCore.AST.AssociativeAST;
 //using Dynamo.Wpf;
@@ -54,34 +57,56 @@ namespace Parasite.Dynamo
 
             RequestData rd = new RequestData();
 
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+
+            string data;
+
+            sw.Start();
+
             DataContainer dataContainer = rd.RequestDataLocal(id);
 
-            for (int i = 0; i < dataContainer.Data.Length; i++)
-            {
-                for (int j = 0; j < dataContainer.Data[i].Length; j++)
-                {
-                    if (dataContainer.Data[i][j].Node is Parasite_Mesh mesh)
-                    {
-                        if (mesh.VertexColors == null)
-                            outPut.Add(DynamoConversion.ToDynamoType(mesh));
-                        else
-                        {
-                            Mesh m = DynamoConversion.ToDynamoType(mesh);
-                            MeshWrapper wrapper = new MeshWrapper(m.VertexNormals, m.VertexPositions, mesh.VertexColors);
-                            outPut.Add(wrapper);
-                        }
-                    }
+            Parallel.For(0, dataContainer.Data.Length, i =>
+             {
 
-                    else if (dataContainer.Data[i][j].Node is Parasite_NurbsCurve nurbsCurve)
-                        outPut.Add(DynamoConversion.ToDynamoType(nurbsCurve));
+             // for (int i = 0; i < dataContainer.Data.Length; i++)
+             // {
+             for (int j = 0; j < dataContainer.Data[i].Length; j++)
+             {
+                 if (dataContainer.Data[i][j].Node is Parasite_Mesh mesh)
+                 {
+                     if (mesh.VertexColors == null)
+                         outPut.Add(DynamoConversion.ToDynamoType(mesh));
+                     else
+                     {
+                         Mesh m = DynamoConversion.ToDynamoType(mesh);
+                         MeshWrapper wrapper = new MeshWrapper(m.VertexNormals, m.VertexPositions, mesh.VertexColors);
+                         outPut.Add(wrapper);
+                     }
+                 }
 
-                    else if (dataContainer.Data[i][j].Node is Parasite_BrepSurface brepSrf)
-                        outPut.Add(DynamoConversion.ToDynamoType(brepSrf));
-                    else
-                        throw new ParasiteNotImplementedExceptions("Type conversion not implemented yet!");
+                 else if (dataContainer.Data[i][j].Node is Parasite_NurbsCurve nurbsCurve)
+                     outPut.Add(DynamoConversion.ToDynamoType(nurbsCurve));
 
-                }
-            }
+                 else if (dataContainer.Data[i][j].Node is Parasite_BrepSurface brepSrf)
+                     outPut.Add(DynamoConversion.ToDynamoType(brepSrf));
+                 else
+                     throw new ParasiteNotImplementedExceptions("Type conversion not implemented yet!");
+
+             }
+             //}
+
+            });
+
+            sw.Stop();
+
+
+
+            data = string.Format("Time taken to load {0} elements: {1} seconds ", outPut.Count.ToString(), (sw.ElapsedMilliseconds * 0.001).ToString());
+
+
+
+            MessageBox.Show(data, "Parasite.IO Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
 
             return outPut;
         }
