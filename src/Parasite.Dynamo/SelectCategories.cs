@@ -29,6 +29,12 @@ namespace Parasite.Dynamo
         private SelectCategories() { }
 
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="geoElement"></param>
+        /// <param name="geo"></param>
         private static void ProcessFamilyInstance(GeometryElement geoElement, List<DynamoSolid> geo)
         {
            
