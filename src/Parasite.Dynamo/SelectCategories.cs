@@ -31,7 +31,7 @@ namespace Parasite.Dynamo
 
 
         /// <summary>
-        /// 
+        /// process a Family instance and get its solid geometry
         /// </summary>
         /// <param name="geoElement"></param>
         /// <param name="geo"></param>
