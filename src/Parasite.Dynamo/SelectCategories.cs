@@ -16,7 +16,7 @@ using DynamoSolid = Autodesk.DesignScript.Geometry.Solid;
 using DB = Autodesk.Revit.DB;
 
 
-namespace Parasite.Dynamo.Nodes
+namespace Parasite.Dynamo
 {
 
     /// <summary>
@@ -29,122 +29,84 @@ namespace Parasite.Dynamo.Nodes
         private SelectCategories() { }
 
 
+        private static void ProcessFamilyInstance(GeometryElement geoElement, List<DynamoSolid> geo)
+        {
+           
+
+
+            for (int j = 0; j < geoElement.Count(); j++)
+            {
+                       
+                GeometryInstance geoInstance = geoElement.ElementAt(j) as GeometryInstance;
+                GeometryElement geometryElement = geoInstance.GetInstanceGeometry();
+
+                foreach (var item in geometryElement)
+                {
+                    Solid solid = item as Solid;
+                    if (solid.ToProtoType() == null) continue;
+                    geo.Add(solid.ToProtoType());
+                }               
+
+            }
+
+
+        }
+
         /// <summary>
-        /// ewdewiiwend
+        /// Select solid geometry from a specific Revit Category
         /// </summary>
         /// <param name="category"></param>
         /// <returns></returns>
-
         public static List<DynamoSolid> SelectElementsFromCategory(DynamoCat category)
         {
             // Get specific elements from model by category
 
+            
             ElementId targetCatId = new ElementId(category.Id);
 
             List<Element> elements = new FilteredElementCollector(DOC).OfCategoryId(targetCatId)
             .Cast<Element>().ToList();
 
-            List<DynamoSolid> geo = new List<DynamoSolid>();
+            List<DynamoSolid> outPutSolids = new List<DynamoSolid>();
+
+ 
 
             for (int i = 0; i < elements.Count; i++)
             {
-
+               
                 if (elements[i].Category.Id == targetCatId)
                 {
-                    GeometryElement geoE = elements[i].get_Geometry(OP);
+                    
 
-                    if (geoE == null) continue;
-
-                    for (int j = 0; j < geoE.Count(); j++)
+                    if (elements[i] is FamilyInstance)
                     {
-                        Solid s = geoE.ElementAt(j) as Solid;
+                        GeometryElement geoE = elements[i].get_Geometry(OP);
+                        if (geoE == null) continue;
+                        ProcessFamilyInstance(geoE, outPutSolids);
+                    }
 
-                        if (s.ToProtoType() == null) continue;
+                    else
+                    {
+                        GeometryElement geoE = elements[i].get_Geometry(OP);
+                        if (geoE == null) continue;
 
-                        geo.Add(s.ToProtoType());
+                        for (int j = 0; j < geoE.Count(); j++)
+                        {
+                            Solid s = geoE.ElementAt(j) as Solid;
+                            if (s.ToProtoType() == null) continue;
+                            outPutSolids.Add(s.ToProtoType());
+                        }
                     }
 
 
                 }
             }
 
-            return geo;
+            return outPutSolids;
         }
 
 
 
-        /// <summary>
-        /// THIS IS A TEMPORARY METHOD
-        /// </summary>
-        /// <param name="solids"></param>
-        /// <returns></returns>
-        public static List<Autodesk.DesignScript.Geometry.Curve> DisplayLoops(List<DynamoSolid> solids)
-        {
-            List<Autodesk.DesignScript.Geometry.Curve> curves = new List<Autodesk.DesignScript.Geometry.Curve>();
-
-            for (int i = 0; i < solids.Count; i++)
-            {
-                Autodesk.DesignScript.Geometry.Face [] faces = solids[i].Faces;
-
-                for (int j = 0; j < faces.Length; j++)
-                {
-                    Autodesk.DesignScript.Geometry.Loop [] loops = faces[j].Loops;
-
-                    for (int k = 0; k < loops.Length; k++)
-                    {
-                       Autodesk.DesignScript.Geometry.CoEdge[] coEdge = loops[k].CoEdges;
-
-
-                        for (int m = 0; m < coEdge.Length; m++)                                         
-                            curves.Add(coEdge[m].Edge.CurveGeometry);
-                        
-                    }
-
-  
-                 
-                }
-            }
-
-
-            return curves;
-        }
-
-
-
-        public static List<Solid> SelectElementsFromCategoryB(DynamoCat category)
-        {
-            // Get specific elements from model by category
-
-            ElementId targetCatId = new ElementId(category.Id);
-
-            List<Element> elements = new FilteredElementCollector(DOC).OfCategoryId(targetCatId)
-            .Cast<Element>().ToList();
-
-            List<Solid> geo = new List<Solid>();
-
-            for (int i = 0; i < elements.Count; i++)
-            {
-
-                if (elements[i].Category.Id == targetCatId)
-                {
-                    GeometryElement geoE = elements[i].get_Geometry(OP);
-
-                    if (geoE == null) continue;
-
-                    for (int j = 0; j < geoE.Count(); j++)
-                    {
-                        Solid s = geoE.ElementAt(j) as Solid;
-
-
-                        geo.Add(s);
-                    }
-
-
-                }
-            }
-
-            return geo;
-        }
 
 
 

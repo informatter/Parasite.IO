@@ -41,7 +41,7 @@
     </Reference>
     <Reference Include="ParasiteIO">
       <HintPath>..\ParasiteIO\bin\Debug\ParasiteIO.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ProtoGeometry, Version=2.5.0.5835, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.5.0.7432\lib\net47\ProtoGeometry.dll</HintPath>
