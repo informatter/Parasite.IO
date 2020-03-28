@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Parasite.Core.Types.Geometry;
+using ParasiteIO.Core.Types.Geometry;
 
 using Autodesk.DesignScript.Geometry;
 
 using Rhino.Geometry;
 using Rhino.Geometry.Collections;
 
-namespace Parasite.Conversion.Dynamo
+namespace ParasiteIO.Conversion.Dynamo
 {
     public static  class ToDynamoExtensions
     {

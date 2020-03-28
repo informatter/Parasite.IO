@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Parasite.Core.Types.Geometry
+namespace ParasiteIO.Core.Types.Geometry
 {
     //public class Parasite_Circle<T> : ParasiteObject
     //{

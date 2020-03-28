@@ -4,17 +4,16 @@ using System.Collections.Generic;
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Parameters;
 using Rhino.Geometry;
-using Parasite.Core.Sync;
+using ParasiteIO.Core.Data.ReceiveDataFromParasite;
+using ParasiteIO.Core.Sync;
 
 namespace Parasite.Grasshopper.Components
 {
     public class ParasiteReceiver_GH : GH_Component, IGH_VariableParameterComponent
     {
-        Parasite.Core.Data.ReceiveDataFromParasite.ToGrasshopper toGrasshopper = new Core.Data.ReceiveDataFromParasite.ToGrasshopper();
-
-        double tolerance;
-
-        FolderListener folderListener = new FolderListener();
+        ParasiteIO.Core.Data.ReceiveDataFromParasite.ToGrasshopper toGrasshopper = new ParasiteIO.Core.Data.ReceiveDataFromParasite.ToGrasshopper();
+        private readonly double tolerance;
+        private readonly FolderListener folderListener = new FolderListener();
         /// <summary>
         /// Initializes a new instance of the ParasiteReceiver_GH class.
         /// </summary>

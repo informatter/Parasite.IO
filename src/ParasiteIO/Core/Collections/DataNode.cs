@@ -1,22 +1,21 @@
-﻿using Parasite.Core.Types;
+﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Parasite.Core.Collections
+
+using ParasiteIO.Core.Types;
+
+namespace ParasiteIO.Core.Collections
 {
 
     [Serializable]
-    public struct DataNode<T> where T: ParasiteObject
+    public struct DataNode<T> where T: ParasiteAbstractObject
     {
-        ParasiteObject m_Data;
-        public DataNode( ParasiteObject data)
+        ParasiteAbstractObject m_Data;
+        public DataNode( ParasiteAbstractObject data)
         {
             m_Data = data;
         }
 
-        public ParasiteObject Node { get => m_Data; }
+        public ParasiteAbstractObject Node { get => m_Data; }
     }
 }

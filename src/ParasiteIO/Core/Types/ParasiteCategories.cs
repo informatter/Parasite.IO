@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace ParasiteIO.Core.Types
 {
-
-   
-    public interface IParasiteObject
+    public enum  ParasiteCategories
     {
-        string TypeName { get; }
-        Dictionary<string,string> Properties { get; set; }
+        Wall, Win_Glass, Win_Window, Roof, Win_Frame
     }
 }

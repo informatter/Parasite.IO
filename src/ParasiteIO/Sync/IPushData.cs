@@ -1,13 +1,13 @@
-﻿using Parasite.Core.Data;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ParasiteIO.Core.Data;
+using ParasiteIO.Core.Collections;
 
-using Parasite.Core.Collections;
-
-namespace Parasite.Core.Sync
+namespace ParasiteIO.Core.Sync
 {
     public interface IPushData
     {

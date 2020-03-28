@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
-using Parasite.Core.Collections;
-using Parasite.Core.Data.CollectData;
-using Parasite.Core.Sync;
+using ParasiteIO.Core.Collections;
+using ParasiteIO.Core.Data.CollectData;
+using ParasiteIO.Core.Sync;
 
-namespace Parasite.Dynamo.Nodes
+namespace ParasiteIO.Dynamo
 {
 
     /// <summary>

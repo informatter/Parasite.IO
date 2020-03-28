@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Parasite.Core.Types;
+using ParasiteIO.Core.Types;
 
 
-namespace Parasite.Core.Collections
+namespace ParasiteIO.Core.Collections
 {
     /// <summary>
     /// 
@@ -20,13 +20,13 @@ namespace Parasite.Core.Collections
     {
 
 
-        private DataNode<ParasiteObject>[][] m_Data;
+        private DataNode<ParasiteAbstractObject>[][] m_Data;
 
         //private string m_id;
 
-        public DataContainer(int n) => m_Data = new DataNode<ParasiteObject>[n][];
+        public DataContainer(int n) => m_Data = new DataNode<ParasiteAbstractObject>[n][];
 
-        public DataNode<ParasiteObject>[][] Data { get => m_Data; }
+        public DataNode<ParasiteAbstractObject>[][] Data { get => m_Data; }
 
         // public string ID { get => m_id; }
 

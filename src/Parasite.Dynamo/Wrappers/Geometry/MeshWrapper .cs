@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Drawing;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
 
-namespace Parasite.Dynamo.Wrappers.Geometry
+namespace ParasiteIO.Dynamo.Wrappers.Geometry
 {
     public class MeshWrapper : IGraphicItem
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Parasite.Core.Types.Display
+namespace ParasiteIO.Core.Types.Display
 {
 
     /// <summary>

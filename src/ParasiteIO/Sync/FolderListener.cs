@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-using Parasite;
-namespace Parasite.Core.Sync
+using System.IO;
+
+namespace ParasiteIO.Core.Sync
 {
     public class FolderListener
     {

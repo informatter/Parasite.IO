@@ -5,13 +5,13 @@ using System.Linq;
 
 
 using Autodesk.DesignScript.Geometry;
-using Parasite.Conversion.Dynamo;
-using Parasite.Core.Types.Geometry;
-using Parasite.Core.Types;
-using Parasite.Core.Exceptions;
+using ParasiteIO.Conversion.Dynamo;
+using ParasiteIO.Core.Types.Geometry;
+using ParasiteIO.Core.Types;
+using ParasiteIO.Core.Exceptions;
 //using Rhino.Geometry;
 
-namespace Parasite.Conversion.Dynamo
+namespace ParasiteIO.Conversion.Dynamo
 {
     /// <summary>
     /// This class contains methods to convert from Parasite data types to

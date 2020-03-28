@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Parasite.Core.Types;
-using Parasite.Conversion.Parasite;
-using Parasite.Core.Exceptions;
+using ParasiteIO.Core.Types;
+using ParasiteIO.Conversion.Parasite;
+using ParasiteIO.Core.Exceptions;
 
-namespace Parasite.Core.Types.Geometry
+namespace ParasiteIO.Core.Types.Geometry
 {
     
     [Serializable]
-    public class Parasite_Polyline: ParasiteObject
+    public class Parasite_Polyline: ParasiteAbstractObject
     {
 
         private Parasite_Point3d[] m_vertices;

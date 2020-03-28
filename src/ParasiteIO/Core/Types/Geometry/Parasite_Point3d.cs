@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Parasite.Core.Types.Geometry
+namespace ParasiteIO.Core.Types.Geometry
 {
     /// <summary>
     /// 
     /// </summary>
     /// 
     [Serializable]
-    public class Parasite_Point3d: ParasiteObject
+    public class Parasite_Point3d: ParasiteAbstractObject
     {
 
 

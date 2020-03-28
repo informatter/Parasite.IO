@@ -2,13 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 
-using Parasite.Conversion.Parasite;
-using Parasite.Core.Exceptions;
-using Parasite.Core.Types.Geometry;
+
+
 using SharpMatter.SharpExtensions;
 using Rhino.Geometry;
 using Rhino.Geometry.Collections;
@@ -18,7 +14,12 @@ using Autodesk.DesignScript.Geometry;
 
 using DB = Autodesk.Revit.DB;
 
-namespace Parasite.Conversion.Parasite
+using ParasiteIO.Conversion.Parasite;
+using ParasiteIO.Core.Exceptions;
+using ParasiteIO.Core.Types.Geometry;
+
+
+namespace ParasiteIO.Conversion.Parasite
 {
 
     /// <summary>

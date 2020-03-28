@@ -2,7 +2,7 @@
 using System.IO;
 
 
-namespace Parasite.Core.Sync
+namespace ParasiteIO.Core.Sync
 {
     internal static class FolderInfo
     {

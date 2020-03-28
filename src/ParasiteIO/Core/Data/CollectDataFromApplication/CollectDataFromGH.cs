@@ -1,17 +1,19 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
+
 using Grasshopper.Kernel.Types;
-using Parasite.Core.Exceptions;
-using Parasite.Core.Types.Geometry;
 using Rhino.Geometry;
 using Rhino.Geometry.Collections;
 
-using Parasite.Conversion.Parasite;
-using Parasite.Core.Types;
-using System.Drawing;
-using Parasite.Core.Collections;
 
-namespace Parasite.Core.Data.CollectDataFromApplication
+using ParasiteIO.Core.Collections;
+using ParasiteIO.Core.Exceptions;
+using ParasiteIO.Core.Types.Geometry;
+using ParasiteIO.Conversion.Parasite;
+using ParasiteIO.Core.Types;
+
+namespace ParasiteIO.Core.Data.CollectDataFromApplication
 {
 
     /// <summary>
@@ -27,7 +29,7 @@ namespace Parasite.Core.Data.CollectDataFromApplication
 
             for (int i = 0; i < dataFromApp.Count; i++)
             {
-                DataNode<ParasiteObject>[] nodeArray = new DataNode<ParasiteObject>[dataFromApp[i].Count];
+                DataNode<ParasiteAbstractObject>[] nodeArray = new DataNode<ParasiteAbstractObject>[dataFromApp[i].Count];
 
                 for (int j = 0; j < dataFromApp[i].Count; j++)
                 {
@@ -37,7 +39,7 @@ namespace Parasite.Core.Data.CollectDataFromApplication
                         if (p.CastTo(out Point3d pt))
                         {
                             Parasite_Point3d point = ParasiteConversion.ToParasiteType(pt);
-                            nodeArray[j] = new DataNode<ParasiteObject>(point);
+                            nodeArray[j] = new DataNode<ParasiteAbstractObject>(point);
                         }
                     }
 
@@ -53,7 +55,7 @@ namespace Parasite.Core.Data.CollectDataFromApplication
                             {
 
                                 Parasite_NurbsSurface paraSrf = ParasiteConversion.ToParasiteType(srfList[0].ToNurbsSurface());
-                                nodeArray[j] = new DataNode<ParasiteObject>(paraSrf);
+                                nodeArray[j] = new DataNode<ParasiteAbstractObject>(paraSrf);
                             }
                         }
                     }
@@ -67,7 +69,7 @@ namespace Parasite.Core.Data.CollectDataFromApplication
                         {
 
                             Parasite_BrepSurface parasiteBrepSrf = ParasiteConversion.ToParasiteType(brep);
-                            nodeArray[j] = new DataNode<ParasiteObject>(parasiteBrepSrf);
+                            nodeArray[j] = new DataNode<ParasiteAbstractObject>(parasiteBrepSrf);
                         }
 
                         if (!brep.IsSurface && brep.IsSolid)
@@ -81,7 +83,7 @@ namespace Parasite.Core.Data.CollectDataFromApplication
                         Rhino.Geometry.Mesh mesh = m.Value;
 
                         Parasite_Mesh parasiteMesh = ParasiteConversion.ToParasiteType(mesh);
-                        nodeArray[j] = new DataNode<ParasiteObject>(parasiteMesh);
+                        nodeArray[j] = new DataNode<ParasiteAbstractObject>(parasiteMesh);
                     }
 
 
@@ -115,7 +117,7 @@ namespace Parasite.Core.Data.CollectDataFromApplication
                         {
 
                             Parasite_NurbsCurve parasiteNurbsCurve = ParasiteConversion.ToParasiteType(nc);
-                            nodeArray[j] = new DataNode<ParasiteObject>(parasiteNurbsCurve);
+                            nodeArray[j] = new DataNode<ParasiteAbstractObject>(parasiteNurbsCurve);
                         }
 
 

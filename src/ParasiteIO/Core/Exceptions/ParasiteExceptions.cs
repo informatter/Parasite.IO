@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Parasite.Core.Exceptions
+namespace ParasiteIO.Core.Exceptions
 {
     public class ParasiteAppTypeExceptions:Exception
     {

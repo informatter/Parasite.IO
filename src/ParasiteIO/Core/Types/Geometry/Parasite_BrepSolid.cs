@@ -5,18 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Parasite.Conversion.Parasite;
-using Parasite.Core.Exceptions;
 using Rhino.Geometry;
 using Rhino.Geometry.Collections;
 
-namespace Parasite.Core.Types.Geometry
+using ParasiteIO.Conversion.Parasite;
+using ParasiteIO.Core.Exceptions;
+
+namespace ParasiteIO.Core.Types.Geometry
 {
     /// <summary>
     /// 
     /// </summary>
     [Serializable]
-    public class Parasite_BrepSolid : ParasiteObject
+    public class Parasite_BrepSolid : ParasiteAbstractObject
     {
         public enum ParasiteBrepTypes { Cylinder, BrepSolid };
 
