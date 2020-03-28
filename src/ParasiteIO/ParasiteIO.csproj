@@ -84,9 +84,11 @@
     <Compile Include="Conversion\Revit\ToRevit.cs" />
     <Compile Include="Core\Data\CollectDataFromApplication\CollectDataFromGH.cs" />
     <Compile Include="Core\Data\CollectDataFromApplication\IApplicationDataCollector.cs" />
+    <Compile Include="Core\Data\Properties\Property.cs" />
     <Compile Include="Core\Data\ReceiveDataFromParasite\IReceiveData.cs" />
     <Compile Include="Core\Data\ReceiveDataFromParasite\ToGrasshopper.cs" />
     <Compile Include="Core\Exceptions\ParasiteExceptions.cs" />
+    <Compile Include="Core\Types\ParasiteCategories.cs" />
     <Compile Include="Core\Types\Display\Parasite_Color.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_BrepSolid.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_BrepSurface.cs" />
@@ -95,12 +97,13 @@
     <Compile Include="Core\Types\Geometry\Parasite_Mesh.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_NurbsCurve.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_Sphere.cs" />
-    <Compile Include="Core\Types\ParasiteObject.cs" />
+    <Compile Include="Core\Types\ParasiteAbstractObject.cs" />
     <Compile Include="Core\Types\IParasiteObject.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_NurbsSurface.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_Point3d.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_Polyline.cs" />
     <Compile Include="Conversion\Rhinoceros\RhinoConversion.cs" />
+    <Compile Include="Core\Types\ParasiteObject.cs" />
     <Compile Include="Sync\FolderInfo.cs" />
     <Compile Include="Sync\FolderListener.cs" />
     <Compile Include="Sync\IPushData.cs" />
@@ -108,6 +111,7 @@
     <Compile Include="Sync\RequestData.cs" />
     <Compile Include="Sync\PushData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\BakeToLayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -7,10 +7,10 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
-using Parasite.Core.Data;
-using Parasite.Core.Collections;
+using ParasiteIO.Core.Data;
+using ParasiteIO.Core.Collections;
 
-namespace Parasite.Core.Sync
+namespace ParasiteIO.Core.Sync
 {
     public  class RequestData :IRequestData
     {

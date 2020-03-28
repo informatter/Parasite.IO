@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//using Parasite.Core.Types.Display;
 
-namespace Parasite.Core.Types.Geometry
+
+namespace ParasiteIO.Core.Types.Geometry
 {
 
     [Serializable]
-    public class Parasite_Sphere : ParasiteObject
+    public class Parasite_Sphere : ParasiteAbstractObject
     {
 
         Parasite_Point3d m_center;

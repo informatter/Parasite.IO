@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Parasite.Core.Types.Geometry;
+
 using Rhino.Geometry;
 
-using Parasite.Core.Exceptions;
+using ParasiteIO.Core.Exceptions;
 using Rhino.Collections;
 using System.IO;
-using Parasite.Core.Sync;
+
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 
-namespace Parasite.Conversion.Rhinoceros
+using ParasiteIO.Core.Sync;
+using ParasiteIO.Core.Types.Geometry;
+
+namespace ParasiteIO.Conversion.Rhinoceros
 {
     public class RhinoConversion
     {
@@ -22,7 +25,15 @@ namespace Parasite.Conversion.Rhinoceros
 
         public static Point3d ToRhinoType(Parasite_Point3d p) => new Point3d(p.X, p.Y, p.Z);
 
+        public static Point3d ToRhinoType(Autodesk.DesignScript.Geometry.Point p) => new Point3d(p.X, p.Y, p.Z);
+
         public static IEnumerable<Point3d> ToRhinoType(IEnumerable<Parasite_Point3d> points)
+        {
+            return points.Select(a => ToRhinoType(a)).ToArray();
+        }
+
+
+        public static IEnumerable<Point3d> ToRhinoType(IEnumerable<Autodesk.DesignScript.Geometry.Point> points)
         {
             return points.Select(a => ToRhinoType(a)).ToArray();
         }
@@ -81,6 +92,14 @@ namespace Parasite.Conversion.Rhinoceros
            return  lines.Select(a => Curve.CreateControlPointCurve(ToRhinoType(a.Vertices), 1)).ToArray();
         }
 
+        public static IEnumerable<Curve> ToRhinoType (IEnumerable<Autodesk.DesignScript.Geometry.Edge> edges)
+        {
+           return edges.Select(a => Curve.CreateControlPointCurve(
+                ToRhinoType(new Autodesk.DesignScript.Geometry.Point[] 
+                { a.StartVertex.PointGeometry, a.EndVertex.PointGeometry }), 1)).ToArray();
+        }
+
+
         #region POLYCURVE
 
 
@@ -99,6 +118,114 @@ namespace Parasite.Conversion.Rhinoceros
         #region SOLID BREPS
 
         public static Sphere ToRhinoType(Parasite_Sphere sph) => new Sphere(ToRhinoType(sph.Center), sph.Radius);
+
+
+
+
+
+
+        public static Brep ToRhinoType(Autodesk.DesignScript.Geometry.Solid solid, double RhinoDocTol)
+        {
+            int n = solid.Faces.Length;
+            double tol = 0.0001;
+            Brep[] faces = new Brep[n];
+
+            for (int i = 0; i < n; i++)
+            {
+               Point3d [] verts = ToRhinoType(solid.Vertices.Select(a => a.PointGeometry).ToArray()).ToArray();
+
+
+
+                if (verts.Length < 3) throw new ParasiteArgumentException("A Brep Face cant be constructed from less than 2 vertices!");
+
+                else if (verts.Length == 3)
+                {
+                    Point3d a = verts[0];
+                    Point3d b = verts[1];
+                    Point3d c = verts[2];
+                    faces[i] = Brep.CreateFromCornerPoints(a, b, c, RhinoDocTol);
+                }
+
+                else if (verts.Length == 4)
+                {
+                    Point3d a = verts[0];
+                    Point3d b = verts[1];
+                    Point3d c = verts[2];
+                    Point3d d = verts[3];
+                    faces[i] = Brep.CreateFromCornerPoints(a, b, c, d, RhinoDocTol);
+                }
+
+                /// Build curve from vertices to then build a Brep face
+                else
+                {
+                    
+
+                    IEnumerable<Curve> edgesAsCurves=  ToRhinoType(solid.Faces[i].Edges);
+
+                    Brep[] b = Brep.CreatePlanarBreps(edgesAsCurves, RhinoDocTol);
+
+                    faces[i] = b[0];
+                }
+
+
+
+            }
+
+
+
+            Brep output = null;
+            try
+            {
+
+                Brep[] joinedBreps = Brep.JoinBreps(faces, tol);
+
+                output = joinedBreps[0];
+            }
+
+            catch
+            {
+                if (output == null)
+                {
+                    // Check if folder exists, if not create it.
+                    if (!Directory.Exists(FolderInfo.dirPath))
+                    {
+                        Directory.CreateDirectory(FolderInfo.dirPath);
+                    }
+
+                    string pathToFolder = Path.Combine(FolderInfo.dirPath, "RebelBreps");
+
+                    FileStream fs = new FileStream(pathToFolder, FileMode.Create);
+
+                    // Construct a BinaryFormatter and use it to serialize the data to the stream.
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    try
+                    {
+                        formatter.Serialize(fs, faces);
+                    }
+                    catch (SerializationException e)
+                    {
+                        throw new SerializationException("Failed to serialize: " + e.Message);
+                    }
+                    finally
+                    {
+                        fs.Close();
+                    }
+
+                    throw new ParasiteConversionExceptions(output.GetType(), solid.GetType());
+                }
+
+
+            }
+
+
+
+
+            return output;
+        }
+
+
+
+
 
 
         /// <summary>

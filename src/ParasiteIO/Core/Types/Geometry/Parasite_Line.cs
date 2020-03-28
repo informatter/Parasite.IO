@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Parasite.Core.Types;
+using ParasiteIO.Core.Types;
 
-namespace Parasite.Core.Types.Geometry
+namespace ParasiteIO.Core.Types.Geometry
 {
     [Serializable]
-    public class Parasite_Line : ParasiteObject
+    public class Parasite_Line : ParasiteAbstractObject
     {
         private Parasite_Point3d m_startPt;
         private Parasite_Point3d m_endPt;

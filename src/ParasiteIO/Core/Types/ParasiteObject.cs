@@ -1,35 +1,29 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Parasite.Core.Types
+using ParasiteIO.Core.Types;
+using ParasiteIO.Core.Data.Properties;
+
+namespace ParasiteIO.Core.Types
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Serializable]
-    public abstract class ParasiteObject: IParasiteObject
+    public class ParasiteObject: ParasiteAbstractObject
     {
-        private string m_typeName;
-       private Dictionary<string, string> m_properties;
+        object m_data;
 
-        public ParasiteObject(Dictionary<string, string> properties = null)
+        Property m_property;
+
+        public ParasiteObject(object data, Property property)
         {
-            m_properties = properties;
+            m_data = data; m_property = property;
         }
 
-       
+        public object Data { get => m_data; set => m_data = value; }
 
-        public string TypeName { get => m_typeName; set => m_typeName = value; }
-
-      
-
-        public Dictionary<string, string> Properties
-        {
-            get { return m_properties; }
-            set { m_properties = value; }
-        }
-
-        //protected abstract void ExtractData( object geo);
-
+        public Property Property { get => m_property; }
     }
 }

@@ -1,11 +1,12 @@
-﻿using Rhino.Geometry;
+﻿
+using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Parasite.Core.Conversion.Dynamo
+
+namespace ParasiteIO.Core.Conversion.Dynamo
 {
     public abstract class DynamoConversion
     {
@@ -26,6 +27,8 @@ namespace Parasite.Core.Conversion.Dynamo
         /// <returns></returns>
         public static Autodesk.DesignScript.Geometry.Point ToDynamoType(Point3d pt) =>
              Autodesk.DesignScript.Geometry.Point.ByCoordinates(pt.X, pt.Y, pt.Z);
+
+
 
     }
 }

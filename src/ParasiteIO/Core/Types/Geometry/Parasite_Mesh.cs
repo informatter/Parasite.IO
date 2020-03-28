@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Parasite.Core.Exceptions;
-using Parasite.Conversion.Parasite;
 using System.Drawing;
 
-namespace Parasite.Core.Types.Geometry
+using ParasiteIO.Core.Exceptions;
+using ParasiteIO.Conversion.Parasite;
+
+namespace ParasiteIO.Core.Types.Geometry
 {
 
     [Serializable]
-    public class Parasite_Mesh : ParasiteObject
+    public class Parasite_Mesh : ParasiteAbstractObject
     {
         #region FIELDS   
          int[][] m_faceIndexes;

@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 
 
-namespace Parasite.Core.Types.Geometry
+namespace ParasiteIO.Core.Types.Geometry
 {
   
     [Serializable]
-    public class Parasite_BrepSurface: ParasiteObject
+    public class Parasite_BrepSurface: ParasiteAbstractObject
     {
     
 
@@ -53,7 +53,7 @@ namespace Parasite.Core.Types.Geometry
 
         #region NESTED CLASSES
         [Serializable]
-        public class Parasite_Cylinder : ParasiteObject
+        public class Parasite_Cylinder : ParasiteAbstractObject
         {
 
             public Parasite_Cylinder()

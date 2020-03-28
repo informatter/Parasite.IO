@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using Rhino.Geometry;
 using Rhino.Geometry.Collections;
-
-using Parasite.Core.Exceptions;
 using Autodesk.DesignScript.Geometry;
 
-namespace Parasite.Core.Types.Geometry
+using ParasiteIO.Core.Exceptions;
+
+namespace ParasiteIO.Core.Types.Geometry
 {
 
     [Serializable]
-    public class Parasite_NurbsSurface: ParasiteObject
+    public class Parasite_NurbsSurface: ParasiteAbstractObject
     {
 
         #region FIELDS

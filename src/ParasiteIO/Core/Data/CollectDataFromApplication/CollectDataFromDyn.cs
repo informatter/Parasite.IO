@@ -5,14 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Autodesk.DesignScript.Geometry;
-using Parasite.Conversion.Parasite;
-using Parasite.Core.Types;
-using Parasite.Core.Types.Geometry;
-using Parasite.Core.Exceptions;
-using Parasite.Core.Collections;
-using Parasite.Core.Data.CollectDataFromApplication;
+using ParasiteIO.Conversion.Parasite;
+using ParasiteIO.Core.Types;
+using ParasiteIO.Core.Types.Geometry;
+using ParasiteIO.Core.Exceptions;
+using ParasiteIO.Core.Collections;
+using ParasiteIO.Core.Data.CollectDataFromApplication;
 
-namespace Parasite.Core.Data.CollectData
+
+namespace ParasiteIO.Core.Data.CollectData
 {
     public class CollectDataFromDyn : IApplicationDataCollector
     {
@@ -22,35 +23,47 @@ namespace Parasite.Core.Data.CollectData
 
             for (int i = 0; i < dataFromApp.Count; i++)
             {
-                DataNode<ParasiteObject>[] nodeArray = new DataNode<ParasiteObject>[ dataFromApp[i].Count];
+                DataNode<ParasiteAbstractObject>[] nodeArray = new DataNode<ParasiteAbstractObject>[ dataFromApp[i].Count];
 
                 for (int j = 0; j < dataFromApp[i].Count; j++)
                 {
                     if (dataFromApp[i][j] == null) continue;
 
+                    else if (dataFromApp[i][j] is ParasiteObject pObj)
+                    {
+                        if (pObj.Data is Solid)
+                        {
+                            Solid s = pObj.Data as Solid;
 
-                    if (dataFromApp[i][j] is Point p)
+                            Parasite_BrepSolid pSolid = ParasiteConversion.ToParasiteType(s);
+
+                            pObj.Data = pSolid;
+                            nodeArray[j] = new DataNode<ParasiteAbstractObject>(pObj);
+                        }
+                    }
+
+                    else if (dataFromApp[i][j] is Point p)
                     {
                         Parasite_Point3d point = ParasiteConversion.ToParasiteType(p);
-                        nodeArray[j] = new DataNode<ParasiteObject>(point);
+                        nodeArray[j] = new DataNode<ParasiteAbstractObject>(point);
 
                     }
 
                     else if (dataFromApp[i][j] is Sphere sph)
                     {
                         Parasite_Sphere s = new Parasite_Sphere(ParasiteConversion.ToParasiteType(sph.CenterPoint), sph.Radius);
-                        nodeArray[j] = new DataNode<ParasiteObject>(s);
+                        nodeArray[j] = new DataNode<ParasiteAbstractObject>(s);
 
                     }
 
                     else if (dataFromApp[i][j] is Solid solid)
                     {
                         Parasite_BrepSolid pSolid = ParasiteConversion.ToParasiteType(solid);
-                        nodeArray[j] = new DataNode<ParasiteObject>(pSolid);
+                        nodeArray[j] = new DataNode<ParasiteAbstractObject>(pSolid);
                     }
 
-                    else
-                        throw new ParasiteNotImplementedExceptions("Object type not implemented yet!");
+                    //else
+                    //    throw new ParasiteNotImplementedExceptions("Object type not implemented yet!");
 
 
                 }

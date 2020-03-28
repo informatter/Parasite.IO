@@ -11,11 +11,10 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Parasite.Core.Collections;
-using Parasite.Core.Data;
-using Parasite.Core.Types;
+using ParasiteIO.Core.Collections;
 
-namespace Parasite.Core.Sync
+
+namespace ParasiteIO.Core.Sync
 {
     public  class PushData:IPushData
     {

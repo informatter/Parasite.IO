@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using Grasshopper.Kernel;
 using Rhino.Geometry;
-
-
-
-using ParasiteIO.Conversion.Parasite;
-using ParasiteIO.Core.Types.Geometry;
+using ParasiteIO.Utilities;
+using ParasiteIO.Core.Types;
 
 namespace Parasite.Grasshopper.Components
 {
-    public class ParasiteMesh_GH : GH_Component
+    public class ParasiteBake_GH : GH_Component
     {
         /// <summary>
-        /// Initializes a new instance of the ParasiteMesh_GH class.
+        /// Initializes a new instance of the ParasiteBake_GH class.
         /// </summary>
-        public ParasiteMesh_GH()
-          : base("ParasiteMesh", "PMesh",
+        public ParasiteBake_GH()
+          : base("Bake", "Bake",
               "Description",
-              "Parasite.IO", "Types")
+              "Parasite.IO", "Bake")
         {
         }
 
@@ -28,7 +25,9 @@ namespace Parasite.Grasshopper.Components
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddMeshParameter("Mesh", "M", "A Rhino Mesh", GH_ParamAccess.list);
+            pManager.AddGenericParameter("Data", "D", "", GH_ParamAccess.list);
+            pManager.AddBooleanParameter("Bake", "B","",GH_ParamAccess.item);
+            
         }
 
         /// <summary>
@@ -36,7 +35,8 @@ namespace Parasite.Grasshopper.Components
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Mesh", "M", "A Parasite Mesh", GH_ParamAccess.list);
+            
+            
         }
 
         /// <summary>
@@ -45,11 +45,12 @@ namespace Parasite.Grasshopper.Components
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            List<Mesh> meshes = new List<Mesh>();
+            List<ParasiteObject> _data = new List<ParasiteObject>();
+            bool _bake = false;
+            if (!DA.GetDataList(0, _data)) return;
+            if (!DA.GetData(1, ref _bake)) return;
 
-            if (!DA.GetDataList(0, meshes)) return;
-
-            DA.SetDataList(0, meshes.Select(a => ParasiteConversion.ToParasiteType(a)).ToList());
+            if(_bake) BakeToLayer.BakeTo(_data);
 
         }
 
@@ -71,7 +72,7 @@ namespace Parasite.Grasshopper.Components
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("c22d3bd9-c087-46aa-91af-3de1bc4c7ceb"); }
+            get { return new Guid("f5c1c100-6710-4d37-89dc-bf4681feba12"); }
         }
     }
 }

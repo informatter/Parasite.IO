@@ -1,20 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Parameters;
-using Rhino.Geometry;
-
-using Parasite.Core.Data;
-using Parasite.Core.Types;
-using Parasite.Core.Sync;
-using Parasite.Core.Data.CollectData;
-
-using Grasshopper.Kernel.Types;
-using Parasite.Core.Types.Geometry;
-using Rhino.Geometry.Collections;
-using Parasite.Core.Data.CollectDataFromApplication;
-using Parasite.Core.Collections;
+using ParasiteIO.Core.Sync;
+using ParasiteIO.Core.Data.CollectDataFromApplication;
+using ParasiteIO.Core.Collections;
 
 
 namespace Parasite.Grasshopper

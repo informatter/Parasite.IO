@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 using Rhino.Geometry;
 
-using Parasite.Core.Collections;
-using Parasite.Core.Sync;
-using Parasite.Core.Types.Geometry;
-using Parasite.Core.Exceptions;
-using Parasite.Conversion.Rhinoceros;
+using ParasiteIO.Core.Collections;
+using ParasiteIO.Core.Sync;
+using ParasiteIO.Core.Types.Geometry;
+using ParasiteIO.Core.Exceptions;
+using ParasiteIO.Conversion.Rhinoceros;
+using ParasiteIO.Core.Types;
 
-namespace Parasite.Core.Data.ReceiveDataFromParasite
+namespace ParasiteIO.Core.Data.ReceiveDataFromParasite
 {
 
     /// <summary>
@@ -29,11 +30,8 @@ namespace Parasite.Core.Data.ReceiveDataFromParasite
         /// <returns></returns>
         public  List<List<object>> ReceiveData(string ID, double RhinoDocTol)
         {
-            
-            
+                       
             List<List<object>> outPut = new List<List<object>>();
-
-
             RequestData rd = new RequestData();
             DataContainer dataContainer = rd.RequestDataLocal(ID);
 
@@ -45,7 +43,11 @@ namespace Parasite.Core.Data.ReceiveDataFromParasite
                 {
                     if (dataContainer.Data[i][j].Node == null) continue;
 
-                    if (dataContainer.Data[i][j].Node is Parasite_Mesh mesh)                  
+                   else  if(dataContainer.Data[i][j].Node is ParasiteObject pObj)                    
+                        data.Add(pObj);
+                    
+
+                   else if (dataContainer.Data[i][j].Node is Parasite_Mesh mesh)                  
                         data.Add(RhinoConversion.ToRhinoType(mesh));
                     
 
@@ -58,10 +60,9 @@ namespace Parasite.Core.Data.ReceiveDataFromParasite
                         data.Add(RhinoConversion.ToRhinoType(brepSolid, RhinoDocTol));
                     
 
-                    else
-                    {
+                    else                   
                         throw new ParasiteNotImplementedExceptions(" type Not implemented Yet!");
-                    }
+                    
                 }
 
                 outPut.Add(data);

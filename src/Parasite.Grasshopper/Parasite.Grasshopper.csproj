@@ -35,7 +35,6 @@
   <ItemGroup>
     <Reference Include="ParasiteIO">
       <HintPath>..\ParasiteIO\bin\Debug\ParasiteIO.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="ProtoGeometry">
       <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\AddIns\DynamoForRevit\ProtoGeometry.dll</HintPath>
@@ -65,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\ParasiteBake_GH.cs" />
     <Compile Include="Components\ParasiteMesh_GH.cs" />
     <Compile Include="Components\ParasiteReceiver_GH.cs" />
     <Compile Include="Components\ParasiteSender_GH.cs" />

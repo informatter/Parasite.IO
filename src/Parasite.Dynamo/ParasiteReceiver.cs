@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Threading.Tasks;
 
-using Parasite.Core.Sync;
-using Parasite.Dynamo.Wrappers.Geometry;
-using Parasite.Core.Collections;
-using Parasite.Core.Types.Geometry;
-using Parasite.Conversion.Dynamo;
-using Parasite.Core.Exceptions;
+using ParasiteIO.Core.Sync;
+using ParasiteIO.Dynamo.Wrappers.Geometry;
+using ParasiteIO.Core.Collections;
+using ParasiteIO.Core.Types.Geometry;
+using ParasiteIO.Conversion.Dynamo;
+using ParasiteIO.Core.Exceptions;
 
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
@@ -21,7 +21,7 @@ using System.Windows.Forms;
 
 
 
-namespace Parasite.Dynamo
+namespace ParasiteIO.Dynamo
 {
 
     /// <summary>
@@ -47,7 +47,7 @@ namespace Parasite.Dynamo
 
 
         /// <summary>
-        /// 
+        /// Receives Parasite Data from a given ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
