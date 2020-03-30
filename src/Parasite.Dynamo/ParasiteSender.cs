@@ -11,7 +11,7 @@ using ParasiteIO.Core.Collections;
 using ParasiteIO.Core.Data.CollectData;
 using ParasiteIO.Core.Sync;
 
-namespace ParasiteIO.Dynamo
+namespace Parasite.Dynamo.Nodes
 {
 
     /// <summary>
