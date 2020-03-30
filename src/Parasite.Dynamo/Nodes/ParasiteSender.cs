@@ -11,7 +11,7 @@ using ParasiteIO.Core.Collections;
 using ParasiteIO.Core.Data.CollectData;
 using ParasiteIO.Core.Sync;
 
-namespace ParasiteIO.Dynamo
+namespace Parasite.Dynamo.Nodes
 {
 
     /// <summary>
@@ -41,9 +41,7 @@ namespace ParasiteIO.Dynamo
         private string Push(string ID, params List<object>[] data)
         {
 
-
             List<List<object>> containers = new List<List<object>>();
-
 
             for (int i = 0; i < data.Count(); i++)
             {
@@ -53,9 +51,7 @@ namespace ParasiteIO.Dynamo
                 {
 
                     if (data[i][j] == null) continue;
-
                     d.Add( data[i][j]);
-
                 }
 
                 containers.Add(d);

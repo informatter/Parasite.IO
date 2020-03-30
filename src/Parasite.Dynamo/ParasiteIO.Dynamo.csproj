@@ -7,8 +7,8 @@
     <ProjectGuid>{4BAEB7A8-F191-4B9F-8AA0-54C7220D6070}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Parasite.Dynamo</RootNamespace>
-    <AssemblyName>Parasite.Dynamo</AssemblyName>
+    <RootNamespace>ParasiteIO.Dynamo</RootNamespace>
+    <AssemblyName>ParasiteIO.Dynamo</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -71,13 +71,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MeshUtilities.cs" />
+    <Compile Include="Nodes\MeshUtilities.cs" />
     <Compile Include="Examples\CustomRenderExample.cs" />
-    <Compile Include="ParasiteReceiver.cs" />
-    <Compile Include="ParasiteSender.cs" />
+    <Compile Include="Nodes\ParasiteReceiver.cs" />
+    <Compile Include="Nodes\ParasiteSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ElementSelection.cs" />
-    <Compile Include="SendToRevit.cs" />
+    <Compile Include="Nodes\ElementSelection.cs" />
+    <Compile Include="Nodes\SendToRevit.cs" />
+    <Compile Include="Utilities\GeometryUtility.cs" />
     <Compile Include="Wrappers\Geometry\MeshWrapper .cs" />
   </ItemGroup>
   <ItemGroup>
