@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{B79786FD-3
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parasite.Dynamo", "Parasite.Dynamo\Parasite.Dynamo.csproj", "{4BAEB7A8-F191-4B9F-8AA0-54C7220D6070}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParasiteIO.Dynamo", "Parasite.Dynamo\ParasiteIO.Dynamo.csproj", "{4BAEB7A8-F191-4B9F-8AA0-54C7220D6070}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParasiteIO", "ParasiteIO\ParasiteIO.csproj", "{4B1C7E55-0BAC-42AC-B98E-EB25C5D303B1}"
 EndProject

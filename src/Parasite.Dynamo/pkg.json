@@ -1,11 +1,16 @@
 {
   "license": "MIT",
   "file_hash": null,
-  "name": "Parasite.Dynamo",
+  "name": "ParasiteIO.Dynamo",
   "version": "1.0.0",
-  "description": "A collection of custom Dynamo nodes.",
+  "description": "ParasiteIO.Dynamo its the Dynamo client for Dynamo to send and receive data from very far away galaxies",
   "group": "",
-  "keywords": [ "Parasite", "Dynamo" ],
+  "keywords":
+  [
+    "ParasiteIO",
+    "Send",
+    "Receive"
+  ],
   "dependencies": [],
   "contents": "",
   "engine_version": "1.0.0",
@@ -14,5 +19,5 @@
   "site_url": "",
   "repository_url": "",
   "contains_binaries": true,
-  "node_libraries": [ "Parasite.Dynamo, Version=1.0.0, Culture=neutral, PublicKeyToken=null" ]
+  "node_libraries": [ "ParasiteIO.Dynamo, Version=1.0.0, Culture=neutral, PublicKeyToken=null" ]
 }

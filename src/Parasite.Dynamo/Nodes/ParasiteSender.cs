@@ -41,9 +41,7 @@ namespace Parasite.Dynamo.Nodes
         private string Push(string ID, params List<object>[] data)
         {
 
-
             List<List<object>> containers = new List<List<object>>();
-
 
             for (int i = 0; i < data.Count(); i++)
             {
@@ -53,9 +51,7 @@ namespace Parasite.Dynamo.Nodes
                 {
 
                     if (data[i][j] == null) continue;
-
                     d.Add( data[i][j]);
-
                 }
 
                 containers.Add(d);
