@@ -1,5 +1,6 @@
 ﻿
 
+using ParasiteIO.Core.Data.Parameter;
 using System;
 using System.Collections.Generic;
 
@@ -24,7 +25,7 @@ namespace ParasiteIO.Core.Types.Geometry
 
         #region CONSTRUCTORS
 
-        public Parasite_BrepSurface(IEnumerable<Parasite_Point3d> vertices, IEnumerable<Parasite_Line> edges =null, Dictionary<string, string> properties = null) : base(properties)
+        public Parasite_BrepSurface(IEnumerable<Parasite_Point3d> vertices, IEnumerable<Parasite_Line> edges =null, Dictionary<string, Parameter> properties = null) : base(properties)
         {
             base.Properties = properties;
             base.TypeName = GetType().Name;

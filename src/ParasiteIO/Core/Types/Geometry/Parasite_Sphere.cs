@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParasiteIO.Core.Data.Parameter;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace ParasiteIO.Core.Types.Geometry
         Parasite_Point3d m_center;
         double m_radius;
        // Parasite_Color m_color;
-        public Parasite_Sphere(Parasite_Point3d center, double radius, /*Parasite_Color color = null,*/ Dictionary<string, string> properties = null) : base(properties)
+        public Parasite_Sphere(Parasite_Point3d center, double radius, /*Parasite_Color color = null,*/ Dictionary<string, Parameter> properties = null) : base(properties)
         {
             base.Properties = properties;
             base.TypeName = GetType().Name;

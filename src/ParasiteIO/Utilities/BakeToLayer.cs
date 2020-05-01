@@ -8,6 +8,9 @@ using ParasiteIO.Core.Exceptions;
 using ParasiteIO.Conversion.Rhinoceros;
 using Rhino.Geometry;
 using ParasiteIO.Core.Types.Geometry;
+using System.Runtime.CompilerServices;
+using ParasiteIO.Core.Data.Parameter;
+using GH_IO.Serialization;
 
 namespace ParasiteIO.Utilities
 {
@@ -15,69 +18,215 @@ namespace ParasiteIO.Utilities
     {
         private static readonly Rhino.RhinoDoc DOC = Rhino.RhinoDoc.ActiveDoc;
         private static readonly Random ran = new Random();
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parentLayerName"></param>
+        /// <param name="parentLayerIndex"></param>
+        /// <param name="childLayerName"></param>
+        /// <returns></returns>
+        public static int AddChildLayer( string parentLayerName,int parentLayerIndex, string childLayerName)
+        {
+           
+
+            if (!Rhino.DocObjects.Layer.IsValidName(childLayerName))
+                throw new ParasiteArgumentException($"{childLayerName} is not a valid layer name"); 
+
+            if (string.IsNullOrEmpty(childLayerName))
+                throw new ParasiteArgumentException($"{childLayerName} cant be blank");
+
+
+            
+            if (parentLayerIndex < 0)
+                throw new ParasiteArgumentException($"The parent layer specified:{parentLayerName} does not exists in the current Rhino Document");
+
+            Rhino.DocObjects.Layer parent_layer = DOC.Layers[parentLayerIndex];
+            
+
+            int childLayerIndex = DOC.Layers.Find(childLayerName, true);
+ 
+            if (childLayerIndex < 0) //This layer does not exist, we add it
+            {
+                Rhino.DocObjects.Tables.LayerTable layerTable = DOC.Layers;
+
+                int R = parent_layer.Color.R;
+                int G = parent_layer.Color.G;
+                int B = parent_layer.Color.B;
+                Rhino.DocObjects.Layer childlayer = new Rhino.DocObjects.Layer
+                {
+                    ParentLayerId = parent_layer.Id,
+                    Name = childLayerName,
+                    
+                    Color = System.Drawing.Color.FromArgb(ran.Next(R, 255), ran.Next(G, 255), ran.Next(B, 255))
+                };
+
+                childLayerIndex = layerTable.Add(childlayer); //Add the layer to the layer table
+
+                if (childLayerIndex < 0)
+                    throw new ParasiteArgumentException(string.Format("Unable to add {0} layer.", parentLayerName));
+            }
+
+ 
+
+            return childLayerIndex;
+
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parasiteObjects"></param>
+        //private static void CreateLayer(List<ParasiteObject> parasiteObjects)
+        //{
+        //    for (int i = 0; i < parasiteObjects.Count; i++)
+        //    {
+        //        //Make new attribute to set name
+        //        Rhino.DocObjects.ObjectAttributes att = new Rhino.DocObjects.ObjectAttributes();
+
+        //        string parentLayerName=null;
+        //        if (parasiteObjects[i].GetParameter(ParameterType.Layer.ToString(), out Parameter value))
+        //         {
+        //            parentLayerName = value.GetValue();
+
+        //            if (!Rhino.DocObjects.Layer.IsValidName(parentLayerName))
+        //                throw new ParasiteArgumentException($"{parentLayerName} is not a valid layer name");
+
+        //            if (string.IsNullOrEmpty(parentLayerName))
+        //                throw new ParasiteArgumentException($"{parentLayerName} cant be blank");
+        //        }
+
+        //        if (parentLayerName == null)
+        //            throw new ParasiteArgumentException($"Could not retrieve Parameter of type {ParameterType.Layer} ");
+
+
+        //        //Set layer
+        //        if (!string.IsNullOrEmpty(parentLayerName) && Rhino.DocObjects.Layer.IsValidName(parentLayerName))
+        //        {
+        //            //Get the current layer index
+        //            Rhino.DocObjects.Tables.LayerTable layerTable = DOC.Layers;
+        //            int layerIndex = layerTable.Find(parentLayerName, true);
+
+        //            if (layerIndex < 0) //This layer does not exist, we add it
+        //            {
+
+        //                Rhino.DocObjects.Layer onlayer = new Rhino.DocObjects.Layer
+        //                {
+
+        //                    Name = parentLayerName,
+        //                    Color = System.Drawing.Color.FromArgb(ran.Next(0, 255), ran.Next(0, 255), ran.Next(0, 255))
+        //                }; //Make a new layer
+
+        //                layerIndex = layerTable.Add(onlayer); //Add the layer to the layer table
+
+        //                if (layerIndex > -1) //We manged to add layer!
+        //                {
+        //                    att.LayerIndex = layerIndex;
+
+        //                }
+        //                else
+        //                    throw new ParasiteArgumentException(string.Format("Unable to add {0} layer.", parentLayerName));
+        //            }
+        //            else
+        //                att.LayerIndex = layerIndex;
+        //        }
+        //    }
+        //}
+
+
+
+
         public static void BakeTo(List<ParasiteObject> parasiteObjects)
         {
+            //Make new attribute to set name
+           // Rhino.DocObjects.ObjectAttributes att = new Rhino.DocObjects.ObjectAttributes();
             for (int i = 0; i < parasiteObjects.Count; i++)
             {
-                string layerName = parasiteObjects[i].Property.Name;
-
-                if (!Rhino.DocObjects.Layer.IsValidName(layerName))
-                {
-                    throw new ParasiteArgumentException(layerName + " " + " is not a valid layer name");
-                }
-
-                if(string.IsNullOrEmpty(layerName))
-                {
-                    throw new ParasiteArgumentException(layerName + " " + " cant be blank");
-                }
-
-                //// Does a layer with the same name already exist?
-                //int layer_index = DOC.Layers.Find(layerName, true);
-                //if (layer_index >= 0)
-                //{
-                //    throw new ParasiteArgumentException(string.Format("A layer with the name {0} already exists.", layerName));
-                    
-                //}
-
-                //// Add a new layer to the DOCument
-                //layer_index = DOC.Layers.Add(layerName, System.Drawing.Color.FromArgb(ran.Next(0,255), ran.Next(0, 255), ran.Next(0, 255)));
-                //if (layer_index < 0)
-                //{
-                //    throw new ParasiteArgumentException(string.Format("Unable to add {0} layer.", layerName));
-           
-                //}
-
                 //Make new attribute to set name
                 Rhino.DocObjects.ObjectAttributes att = new Rhino.DocObjects.ObjectAttributes();
 
+
+                string parentLayerName = null;
+                string childLayerName = null;
+                if (parasiteObjects[i].GetParameter(ParameterType.Layer.ToString(), out Parameter value))
+                {
+                    parentLayerName = value.GetValue();
+
+                    if (!Rhino.DocObjects.Layer.IsValidName(parentLayerName))
+                        throw new ParasiteArgumentException($"{parentLayerName} is not a valid layer name");
+
+                    if (string.IsNullOrEmpty(parentLayerName))
+                        throw new ParasiteArgumentException($"{parentLayerName} cant be blank");
+                }
+
+                if (parentLayerName == null)
+                    throw new ParasiteArgumentException($"Could not retrieve Parameter of type {ParameterType.Layer} ");
+
+                if (parasiteObjects[i].GetParameter(ParameterType.ChildLayer.ToString(), out Parameter val))
+                {
+                    childLayerName = val.GetValue();
+
+                    if (!Rhino.DocObjects.Layer.IsValidName(childLayerName))
+                        throw new ParasiteArgumentException($"{childLayerName} is not a valid layer name");
+
+                    if (string.IsNullOrEmpty(childLayerName))
+                        throw new ParasiteArgumentException($"{childLayerName} cant be blank");
+                }
+
+                if (childLayerName == null)
+                    throw new ParasiteArgumentException($"Could not retrieve Parameter of type {ParameterType.Layer} ");
+
+
+
+
                 //Set layer
-                if (!string.IsNullOrEmpty(layerName) && Rhino.DocObjects.Layer.IsValidName(layerName))
+                if (!string.IsNullOrEmpty(parentLayerName) && Rhino.DocObjects.Layer.IsValidName(parentLayerName))
                 {
                     //Get the current layer index
                     Rhino.DocObjects.Tables.LayerTable layerTable = DOC.Layers;
-                    int layerIndex = layerTable.Find(layerName, true);
+                    int parentLayerIndex = layerTable.Find(parentLayerName, true);
 
-                    if (layerIndex < 0) //This layer does not exist, we add it
+                    if (parentLayerIndex < 0) //This layer does not exist, we add it
                     {
+
                         Rhino.DocObjects.Layer onlayer = new Rhino.DocObjects.Layer
                         {
-                            Name = layerName,
+
+                            Name = parentLayerName,
                             Color = System.Drawing.Color.FromArgb(ran.Next(0, 255), ran.Next(0, 255), ran.Next(0, 255))
                         }; //Make a new layer
 
-                        layerIndex = layerTable.Add(onlayer); //Add the layer to the layer table
-                        if (layerIndex > -1) //We manged to add layer!
+                        parentLayerIndex = layerTable.Add(onlayer); //Add the layer to the layer table
+
+                        if (parentLayerIndex > -1) //We manged to add layer!
                         {
-                            att.LayerIndex = layerIndex;
-            
+                            att.LayerIndex = parentLayerIndex;
+                            att.LayerIndex = AddChildLayer(parentLayerName,parentLayerIndex, childLayerName);
+
+
 
                         }
-                         else
-                            throw new ParasiteArgumentException(string.Format("Unable to add {0} layer.", layerName));
+                        else
+                            throw new ParasiteArgumentException(string.Format("Unable to add {0} layer.", parentLayerName));
                     }
+
+                    // Layer already exists
                     else
-                        att.LayerIndex = layerIndex; //We simply add to the existing layer
+                    {
+                        att.LayerIndex = parentLayerIndex;
+                        att.LayerIndex = AddChildLayer(parentLayerName, parentLayerIndex, childLayerName);
+
+                    }
+
+                    
                 }
+
+
+                Rhino.DocObjects.Layer childLayer = DOC.Layers[att.LayerIndex];
+
+                if (childLayer.Name == "Default") throw new ParasiteArgumentException("Child Layer was set to default!");
 
 
                 if (parasiteObjects[i].Data is Parasite_BrepSolid solid)
@@ -90,17 +239,7 @@ namespace ParasiteIO.Utilities
      
             }
 
-            //for (int i = 0; i < parasiteObjects.Count; i++)
-            //{
-            //    if(parasiteObjects[i].Data is Autodesk.DesignScript.Geometry.Solid solid)
-            //    {
-                   
-            //        var addedGeo = DOC.Objects.Add(RhinoConversion.ToRhinoType(solid, 0.001));
 
-            //       // DOC.Objects.AddRhinoObject()
-            //    }
-               
-            //}
         }
 
 

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>Application ParasiteIO.Revit</Name>
+    <Assembly>ParasiteIO.Revitdll</Assembly>
+    <FullClassName>ParasiteIO.Revit.UI.ApplicationRibbonTab</FullClassName>
+    <ClientId>f5c1c100-6710-4d37-89dc-bf4681feba12</ClientId>
+    <VendorId>Nicholas Rawitscher Torres</VendorId>
+    <VendorDescription>nicholas.rawitscher@protonmail.com</VendorDescription>
+  </AddIn>
+</RevitAddIns>
+
+
+

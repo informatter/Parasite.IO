@@ -35,13 +35,17 @@
       <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\AddIns\DynamoForRevit\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="GH_IO">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Rhino 6\Plug-ins\Grasshopper\GH_IO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Grasshopper">
       <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Rhino 6\Plug-ins\Grasshopper\Grasshopper.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ProtoGeometry">
       <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\AddIns\DynamoForRevit\ProtoGeometry.dll</HintPath>
@@ -84,10 +88,18 @@
     <Compile Include="Conversion\Revit\ToRevit.cs" />
     <Compile Include="Core\Data\CollectDataFromApplication\CollectDataFromGH.cs" />
     <Compile Include="Core\Data\CollectDataFromApplication\IApplicationDataCollector.cs" />
+    <Compile Include="Core\Data\Parameter\ParameterType.cs" />
+    <Compile Include="Core\Data\Parameter\Parameter.cs" />
+    <Compile Include="Core\Data\Parameter\StorageType.cs" />
+    <Compile Include="Core\Data\Properties\IProperty.cs" />
     <Compile Include="Core\Data\Properties\Property.cs" />
     <Compile Include="Core\Data\ReceiveDataFromParasite\IReceiveData.cs" />
     <Compile Include="Core\Data\ReceiveDataFromParasite\ToGrasshopper.cs" />
+    <Compile Include="Core\Document\RhinoDocument\AddGeometry.cs" />
+    <Compile Include="Core\Document\RhinoDocument\LayerFactory.cs" />
     <Compile Include="Core\Exceptions\ParasiteExceptions.cs" />
+    <Compile Include="Core\Factory\IParasiteObjFactory.cs" />
+    <Compile Include="Core\Factory\ParasiteObjFactory.cs" />
     <Compile Include="Core\Types\ParasiteCategories.cs" />
     <Compile Include="Core\Types\Display\Parasite_Color.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_BrepSolid.cs" />
@@ -98,12 +110,13 @@
     <Compile Include="Core\Types\Geometry\Parasite_NurbsCurve.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_Sphere.cs" />
     <Compile Include="Core\Types\ParasiteAbstractObject.cs" />
-    <Compile Include="Core\Types\IParasiteObject.cs" />
+    <Compile Include="Core\Types\IParasiteAbstractObject.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_NurbsSurface.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_Point3d.cs" />
     <Compile Include="Core\Types\Geometry\Parasite_Polyline.cs" />
     <Compile Include="Conversion\Rhinoceros\RhinoConversion.cs" />
     <Compile Include="Core\Types\ParasiteObject.cs" />
+    <Compile Include="Core\Types\Wrappers\Grasshopper\ParasiteObject_GH.cs" />
     <Compile Include="Sync\FolderInfo.cs" />
     <Compile Include="Sync\FolderListener.cs" />
     <Compile Include="Sync\IPushData.cs" />

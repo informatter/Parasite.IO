@@ -29,6 +29,7 @@ namespace ParasiteIO.Dynamo
     /// </summary>
     /// 
 
+    public enum DataType { Mesh,Surface}
     //[NodeName("Parasite Receiver")]
     //[NodeDescription("Receives data from an external application")]
     //[NodeCategory("Parasite.ReceiveData")]
@@ -51,21 +52,29 @@ namespace ParasiteIO.Dynamo
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static List<object> ReceiveData(string id)
+        public static object[] ReceiveData(string id)
         {
-            List<object> outPut = new List<object>();
+           // List<object> outPut = new List<object>();
 
             RequestData rd = new RequestData();
 
-            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+            
 
-            string data;
+            string data="";
+            DataType dataType = DataType.Mesh;
+            int vertices = 0;
+            int faces = 0;
+
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
             sw.Start();
 
             DataContainer dataContainer = rd.RequestDataLocal(id);
+            int dataCount = dataContainer.Data.Length;
 
-            Parallel.For(0, dataContainer.Data.Length, i =>
+            object[] outPut = new object[dataCount];
+
+            Parallel.For(0, dataCount, i =>
              {
 
              // for (int i = 0; i < dataContainer.Data.Length; i++)
@@ -74,21 +83,27 @@ namespace ParasiteIO.Dynamo
              {
                  if (dataContainer.Data[i][j].Node is Parasite_Mesh mesh)
                  {
-                     if (mesh.VertexColors == null)
-                         outPut.Add(DynamoConversion.ToDynamoType(mesh));
-                     else
-                     {
-                         Mesh m = DynamoConversion.ToDynamoType(mesh);
-                         MeshWrapper wrapper = new MeshWrapper(m.VertexNormals, m.VertexPositions, mesh.VertexColors);
-                         outPut.Add(wrapper);
-                     }
+                         if (mesh.VertexColors == null)
+                         {
+                             Mesh m =DynamoConversion.ToDynamoType(mesh);
+                             vertices = m.VertexPositions.Length;
+                             faces = m.FaceIndices.Length;
+                             outPut[i] = m;
+                             dataType = DataType.Mesh;
+                         }
+                         else
+                         {
+                             Mesh m = DynamoConversion.ToDynamoType(mesh);
+                             MeshWrapper wrapper = new MeshWrapper(m.VertexNormals, m.VertexPositions, mesh.VertexColors);
+                             outPut[i] = wrapper;
+                         }
                  }
 
                  else if (dataContainer.Data[i][j].Node is Parasite_NurbsCurve nurbsCurve)
-                     outPut.Add(DynamoConversion.ToDynamoType(nurbsCurve));
+                        outPut[i] = DynamoConversion.ToDynamoType(nurbsCurve);
 
                  else if (dataContainer.Data[i][j].Node is Parasite_BrepSurface brepSrf)
-                     outPut.Add(DynamoConversion.ToDynamoType(brepSrf));
+                        outPut[i] = DynamoConversion.ToDynamoType(brepSrf);
                  else
                      throw new ParasiteNotImplementedExceptions("Type conversion not implemented yet!");
 
@@ -99,9 +114,16 @@ namespace ParasiteIO.Dynamo
 
             sw.Stop();
 
+            switch(dataType)
+            {
+                case DataType.Mesh:
+                    data = string.Format("Time taken to load mesh with {0} vertices and {1} faces: {2} seconds ", 
+                        vertices,faces, (sw.ElapsedMilliseconds * 0.001).ToString());
 
+                    break;
+            }
 
-            data = string.Format("Time taken to load {0} elements: {1} seconds ", outPut.Count.ToString(), (sw.ElapsedMilliseconds * 0.001).ToString());
+           // data = string.Format("Time taken to load {0} elements: {1} seconds ", outPut.Length.ToString(), (sw.ElapsedMilliseconds * 0.001).ToString());
 
 
 

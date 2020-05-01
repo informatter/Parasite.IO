@@ -6,8 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using ParasiteIO.Core.Types;
+using Newtonsoft.Json;
 
+using ParasiteIO.Core.Types;
+using System.IO;
 
 namespace ParasiteIO.Core.Collections
 {
@@ -15,14 +17,16 @@ namespace ParasiteIO.Core.Collections
     /// 
     /// </summary>
 
+    
     [Serializable]
     public struct DataContainer
     {
 
-
+            
         private DataNode<ParasiteAbstractObject>[][] m_Data;
 
         //private string m_id;
+       
 
         public DataContainer(int n) => m_Data = new DataNode<ParasiteAbstractObject>[n][];
 
@@ -31,6 +35,7 @@ namespace ParasiteIO.Core.Collections
         // public string ID { get => m_id; }
 
 
+      
 
     }
 }
