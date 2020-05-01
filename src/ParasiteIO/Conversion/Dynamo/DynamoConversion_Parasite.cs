@@ -20,10 +20,6 @@ namespace ParasiteIO.Conversion.Dynamo
     public partial class DynamoConversion
     {
 
-
-    
-
-
         #region POINTS
         /// <summary>
         /// Converts a Parasite Point3d to a Dynamo Point
@@ -78,13 +74,15 @@ namespace ParasiteIO.Conversion.Dynamo
                 {
                     if (faceIndexes[i].Length == 3)
                     {
-                        IndexGroup ig = IndexGroup.ByIndices((uint)faceIndexes[i][0], (uint)faceIndexes[i][1], (uint)faceIndexes[i][2]);
+                        IndexGroup ig = IndexGroup.ByIndices((uint)faceIndexes[i][0], 
+                            (uint)faceIndexes[i][1], (uint)faceIndexes[i][2]);
                         indexGroups.Add(ig);
                     }
 
                     if (faceIndexes[i].Length == 4)
                     {
-                        IndexGroup ig = IndexGroup.ByIndices((uint)faceIndexes[i][0], (uint)faceIndexes[i][1], (uint)faceIndexes[i][2], (uint)faceIndexes[i][3]);
+                        IndexGroup ig = IndexGroup.ByIndices((uint)faceIndexes[i][0], 
+                            (uint)faceIndexes[i][1], (uint)faceIndexes[i][2], (uint)faceIndexes[i][3]);
                         indexGroups.Add(ig);
                     }
 
