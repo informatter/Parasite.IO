@@ -7,6 +7,7 @@ using System.Drawing;
 
 using ParasiteIO.Core.Exceptions;
 using ParasiteIO.Conversion.Parasite;
+using ParasiteIO.Core.Data.Parameter;
 
 namespace ParasiteIO.Core.Types.Geometry
 {
@@ -21,7 +22,7 @@ namespace ParasiteIO.Core.Types.Geometry
 
 
         #endregion
-        public Parasite_Mesh(int[][] faceIndexes, Parasite_Point3d[] vertices, Color[]  vertexColors = null, Dictionary<string, string> properties = null) : base(properties)
+        public Parasite_Mesh(int[][] faceIndexes, Parasite_Point3d[] vertices, Color[]  vertexColors = null, Dictionary<string, Parameter> properties = null) : base(properties)
         {
             base.Properties = properties;
             base.TypeName = GetType().Name;        

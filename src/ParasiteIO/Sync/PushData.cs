@@ -10,6 +10,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using Grasshopper;
 using Newtonsoft.Json;
 using ParasiteIO.Core.Collections;
 
@@ -37,6 +38,8 @@ namespace ParasiteIO.Core.Sync
             try
             {
                 formatter.Serialize(fs, data);
+                
+                
             }
             catch (SerializationException e)
             {
@@ -49,19 +52,30 @@ namespace ParasiteIO.Core.Sync
         }
 
 
+   
+
+
+        private static byte[] GetAsByteArray(string imageFilePath)
+        {
+            FileStream fileStream = new FileStream(imageFilePath, FileMode.Open, FileAccess.Read);
+            BinaryReader binaryReader = new BinaryReader(fileStream);
+            return binaryReader.ReadBytes((int)fileStream.Length);
+        }
+
+
         public void PushDataServer(DataContainer data, string url)
         {
             throw new NotImplementedException();
         }
 
 
-        public  async void PushDataServerAsync(DataContainer data, string url)
+        public async void PushDataServerAsync(DataContainer data, string url)
         {
             throw new NotImplementedException();
         }
 
 
-     
+
 
         private  async void ReadResponse(HttpResponseMessage response)
         {

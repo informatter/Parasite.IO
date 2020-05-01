@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 using ParasiteIO.Core.Types;
 using ParasiteIO.Core.Data.Properties;
+using System.Runtime.CompilerServices;
+using ParasiteIO.Core.Data.Parameter;
 
 namespace ParasiteIO.Core.Types
 {
@@ -15,15 +17,44 @@ namespace ParasiteIO.Core.Types
     {
         object m_data;
 
-        Property m_property;
-
-        public ParasiteObject(object data, Property property)
+        public ParasiteObject() { }
+        public ParasiteObject(object data, Dictionary<string, Parameter> properties = null):base(properties)
         {
-            m_data = data; m_property = property;
+            if (properties == null)            
+                base.Properties = new Dictionary<string, Parameter>();           
+            else
+                base.Properties = properties;
+
+
+            m_data = data; 
         }
 
         public object Data { get => m_data; set => m_data = value; }
 
-        public Property Property { get => m_property; }
+
+
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="parameter"></param>
+        public override void AddParameter(string name, Parameter parameter)
+        {
+            base.AddParameter(name, parameter);
+        }
+
+
+        /// <summary>
+        /// Returns a parameter by its name. 
+        /// Returns false if not succesfull
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public override bool GetParameter(string name, out Parameter value)
+        {
+            return base.GetParameter(name, out value);
+        }
     }
 }

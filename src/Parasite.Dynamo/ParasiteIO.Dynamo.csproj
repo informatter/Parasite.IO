@@ -71,6 +71,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Data\ExtractParameterMap.cs" />
+    <Compile Include="Core\GeometryExtraction.cs" />
+    <Compile Include="Core\DynamoParasiteFactory.cs" />
     <Compile Include="Nodes\MeshUtilities.cs" />
     <Compile Include="Examples\CustomRenderExample.cs" />
     <Compile Include="Nodes\ParasiteReceiver.cs" />
@@ -78,13 +81,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Nodes\ElementSelection.cs" />
     <Compile Include="Nodes\SendToRevit.cs" />
-    <Compile Include="Utilities\GeometryUtility.cs" />
     <Compile Include="Wrappers\Geometry\MeshWrapper .cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="pkg.json" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
     <!--Copy the package to the Dynamo package root directory-->

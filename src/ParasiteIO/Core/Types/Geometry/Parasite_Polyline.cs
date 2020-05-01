@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ParasiteIO.Core.Types;
 using ParasiteIO.Conversion.Parasite;
 using ParasiteIO.Core.Exceptions;
+using ParasiteIO.Core.Data.Parameter;
 
 namespace ParasiteIO.Core.Types.Geometry
 {
@@ -17,7 +18,7 @@ namespace ParasiteIO.Core.Types.Geometry
 
         private Parasite_Point3d[] m_vertices;
         private bool m_isClosed;
-        public Parasite_Polyline(object polyline, Dictionary<string, string> properties =null):base(properties)
+        public Parasite_Polyline(object polyline, Dictionary<string, Parameter> properties =null):base(properties)
         {
             base.Properties = properties;
             base.TypeName = GetType().Name;

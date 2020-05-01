@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Rhino;
 using Rhino.Geometry;
 
 using ParasiteIO.Core.Exceptions;
@@ -15,11 +16,20 @@ using System.Runtime.Serialization;
 
 using ParasiteIO.Core.Sync;
 using ParasiteIO.Core.Types.Geometry;
+using Grasshopper;
+using Grasshopper.Kernel.Data;
 
 namespace ParasiteIO.Conversion.Rhinoceros
 {
+   
+
+
     public class RhinoConversion
     {
+      
+
+     
+
 
         #region POINTS
 
@@ -236,7 +246,7 @@ namespace ParasiteIO.Conversion.Rhinoceros
         public static Brep ToRhinoType(Parasite_BrepSolid solid, double RhinoDocTol)
         {
             int n = solid.Faces.Length;
-            double tol = 0.0001;
+           
             Brep[] faces = new Brep[n];
 
             for (int i = 0; i < n; i++)
@@ -284,10 +294,8 @@ namespace ParasiteIO.Conversion.Rhinoceros
           
             Brep output = null;
             try
-            {
-             
-                Brep[] joinedBreps = Brep.JoinBreps(faces, tol);
-
+            {            
+                Brep[] joinedBreps = Brep.JoinBreps(faces, RhinoDocTol);
                 output = joinedBreps[0];
             }
 

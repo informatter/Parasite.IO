@@ -10,6 +10,7 @@ using Rhino.Geometry.Collections;
 
 using ParasiteIO.Conversion.Parasite;
 using ParasiteIO.Core.Exceptions;
+using ParasiteIO.Core.Data.Parameter;
 
 namespace ParasiteIO.Core.Types.Geometry
 {
@@ -29,7 +30,7 @@ namespace ParasiteIO.Core.Types.Geometry
 
         #region CONSTRUCTORS
 
-        public Parasite_BrepSolid(Parasite_BrepSurface[] faces, Dictionary<string, string> properties = null)
+        public Parasite_BrepSolid(Parasite_BrepSurface[] faces, Dictionary<string, Parameter> properties = null)
         {
             base.Properties = properties;
             base.TypeName = GetType().Name;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParasiteIO.Core.Data.Parameter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace ParasiteIO.Core.Types.Geometry
         double m_y;
         double m_z;
 
-        public Parasite_Point3d(double x, double y, double z, Dictionary<string, string> properties =null )
+        public Parasite_Point3d(double x, double y, double z, Dictionary<string, Parameter> properties =null )
         {
             m_x = x;
             m_y = y;
@@ -79,7 +80,10 @@ namespace ParasiteIO.Core.Types.Geometry
 
         public static Parasite_Point3d Invalid()=> new Parasite_Point3d(double.NaN, double.NaN, double.NaN);
 
-
+        public override string ToString()
+        {
+            return string.Format("({0},{1},{2})", m_x, m_y, m_z);
+        }
 
     }
 

@@ -17,7 +17,7 @@ using DB = Autodesk.Revit.DB;
 using ParasiteIO.Conversion.Parasite;
 using ParasiteIO.Core.Exceptions;
 using ParasiteIO.Core.Types.Geometry;
-
+using ParasiteIO.Core.Data.Parameter;
 
 namespace ParasiteIO.Conversion.Parasite
 {
@@ -39,7 +39,7 @@ namespace ParasiteIO.Conversion.Parasite
 
 
         #region MESHES
-        public static Parasite_Mesh ToParasiteType( Rhino.Geometry.Mesh mesh, Dictionary<string, string> properties = null)
+        public static Parasite_Mesh ToParasiteType( Rhino.Geometry.Mesh mesh, Dictionary<string, Parameter> properties = null)
         {
 
             if (!mesh.IsValid) throw new ParasiteArgumentException("Please input a valid Rhino Mesh!");
@@ -155,7 +155,7 @@ namespace ParasiteIO.Conversion.Parasite
 
         #region BREPS - SURFACE
 
-        public static Parasite_BrepSurface ToParasiteType(Rhino.Geometry.Brep brep, Dictionary<string, string> properties = null)
+        public static Parasite_BrepSurface ToParasiteType(Rhino.Geometry.Brep brep, Dictionary<string, Parameter> properties = null)
         {
            
             if (!brep.IsValid)
@@ -182,7 +182,7 @@ namespace ParasiteIO.Conversion.Parasite
         /// <param name="solid"></param>
         /// <param name="properties"></param>
         /// <returns></returns>
-        public static Parasite_BrepSolid ToParasiteType(Autodesk.DesignScript.Geometry.Solid solid, Dictionary<string, string> properties = null)
+        public static Parasite_BrepSolid ToParasiteType(Autodesk.DesignScript.Geometry.Solid solid, Dictionary<string, Parameter> properties = null)
         {
             Autodesk.DesignScript.Geometry.Face[] faces = solid.Faces;
 

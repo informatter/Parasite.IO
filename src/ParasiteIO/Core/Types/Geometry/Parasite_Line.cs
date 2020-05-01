@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ParasiteIO.Core.Data.Parameter;
 using ParasiteIO.Core.Types;
 
 namespace ParasiteIO.Core.Types.Geometry
@@ -15,7 +16,7 @@ namespace ParasiteIO.Core.Types.Geometry
 
 
 
-        public Parasite_Line(Parasite_Point3d startPt, Parasite_Point3d endPt, Dictionary<string, string> properties = null) : base(properties)
+        public Parasite_Line(Parasite_Point3d startPt, Parasite_Point3d endPt, Dictionary<string, Parameter> properties = null) : base(properties)
         {
             base.Properties = properties;
             base.TypeName = GetType().Name;

@@ -5,6 +5,9 @@ using Grasshopper.Kernel;
 using Rhino.Geometry;
 using ParasiteIO.Utilities;
 using ParasiteIO.Core.Types;
+using Grasshopper;
+using Grasshopper.Kernel.Data;
+using Grasshopper.Kernel.Types;
 
 namespace Parasite.Grasshopper.Components
 {
@@ -30,6 +33,8 @@ namespace Parasite.Grasshopper.Components
             
         }
 
+        
+
         /// <summary>
         /// Registers all the output parameters for this component.
         /// </summary>
@@ -52,7 +57,13 @@ namespace Parasite.Grasshopper.Components
 
             if(_bake) BakeToLayer.BakeTo(_data);
 
+           
+
+
+
         }
+
+      
 
         /// <summary>
         /// Provides an Icon for the component.
@@ -61,6 +72,7 @@ namespace Parasite.Grasshopper.Components
         {
             get
             {
+                
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
                 return null;

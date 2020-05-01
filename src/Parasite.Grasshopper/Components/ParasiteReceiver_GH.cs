@@ -6,6 +6,7 @@ using Grasshopper.Kernel.Parameters;
 using Rhino.Geometry;
 using ParasiteIO.Core.Data.ReceiveDataFromParasite;
 using ParasiteIO.Core.Sync;
+using ParasiteIO.Core.Types.Wrappers.Grasshopper;
 
 namespace Parasite.Grasshopper.Components
 {
@@ -53,8 +54,9 @@ namespace Parasite.Grasshopper.Components
         {
             string _id = "";
             DA.GetData(0, ref _id);
+
         
-           List<List<object>>  data = toGrasshopper.ReceiveData(_id, tolerance);
+            List<List<ParasiteObject_GH>> data = toGrasshopper.ReceiveData(_id, tolerance);
 
             if (data.Count < Params.Output.Count)            
                 AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "You have more incoming data than available outputs");

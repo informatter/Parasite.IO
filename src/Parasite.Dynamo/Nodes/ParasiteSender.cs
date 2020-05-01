@@ -20,14 +20,16 @@ namespace Parasite.Dynamo.Nodes
     /// </summary>
     public class ParasiteSender
     {
-        private readonly CollectDataFromDyn fromDynamo = new CollectDataFromDyn();
+        //private static readonly CollectDataFromDyn fromDynamo = new CollectDataFromDyn();
         /// <summary>
         /// 
         /// </summary>
-        public ParasiteSender(string id, params List<object>[] data)
-        {
-            Push(id, data);
-        }
+        //public ParasiteSender(string id, params List<object>[] data)
+        //{
+        //    Push(id, data);
+        //}
+
+        private  ParasiteSender() { }
 
 
 
@@ -37,9 +39,10 @@ namespace Parasite.Dynamo.Nodes
         /// <param name="ID"></param>
         /// <param name="data"></param>
         /// <returns>Pushed @ </returns>
-        [IsVisibleInDynamoLibrary(false)]
-        private string Push(string ID, params List<object>[] data)
+       
+        public static void Push(string ID, params List<object>[] data)
         {
+            CollectDataFromDyn fromDynamo = new CollectDataFromDyn();
 
             List<List<object>> containers = new List<List<object>>();
 
@@ -63,7 +66,7 @@ namespace Parasite.Dynamo.Nodes
 
             pd.PushDataLocal(dc, ID);
 
-            return "Pushed @" +  string.Format("{0:HH:mm:ss tt}", DateTime.Now);
+            //return "Pushed @" +  string.Format("{0:HH:mm:ss tt}", DateTime.Now);
         }
 
     }

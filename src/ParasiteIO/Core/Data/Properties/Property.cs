@@ -11,14 +11,14 @@ namespace ParasiteIO.Core.Data.Properties
     /// The initial intention for it is to be able to import Revit geometry with their respective types. Walls, frames, glass, etc.
     /// </summary>
     [Serializable]
-    public class Property
+    public class Property : IProperty
     {
         ParasiteCategories m_category;
         string m_name;
 
         public Property(ParasiteCategories category, string name) { m_category = category; m_name = name; }
 
-        
+
         /// <summary>
         /// The category of this property. i.e walls, frame, mullions... ect
         /// </summary>

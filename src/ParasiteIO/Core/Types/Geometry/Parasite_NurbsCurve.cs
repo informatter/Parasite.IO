@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using ParasiteIO.Core.Data.Parameter;
 using ParasiteIO.Core.Types;
 
 namespace ParasiteIO.Core.Types.Geometry
@@ -42,7 +42,7 @@ namespace ParasiteIO.Core.Types.Geometry
         /// <param name="degree"></param>
         /// <param name="properties"></param>
         public Parasite_NurbsCurve(Parasite_Point3d [] controlPoints, double [] weights,double[] knots,double [] interiorKnotMultiplicity, 
-            int degree, Dictionary<string, string> properties = null)
+            int degree, Dictionary<string, Parameter> properties = null)
         {
             base.Properties = properties;
             base.TypeName = GetType().Name;

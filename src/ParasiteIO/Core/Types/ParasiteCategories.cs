@@ -8,6 +8,6 @@ namespace ParasiteIO.Core.Types
 {
     public enum  ParasiteCategories
     {
-        Wall, Win_Glass, Win_Window, Roof, Win_Frame
+        Wall, Win_Glass, Win_Window, Roof, Win_Frame, CurtainWall, Floor
     }
 }

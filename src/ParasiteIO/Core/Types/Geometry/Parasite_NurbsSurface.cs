@@ -6,6 +6,7 @@ using Rhino.Geometry.Collections;
 using Autodesk.DesignScript.Geometry;
 
 using ParasiteIO.Core.Exceptions;
+using ParasiteIO.Core.Data.Parameter;
 
 namespace ParasiteIO.Core.Types.Geometry
 {
@@ -32,7 +33,7 @@ namespace ParasiteIO.Core.Types.Geometry
         /// <param name="nurbsSurface"></param>
         /// <param name="properties"></param>
         public Parasite_NurbsSurface(Parasite_Point3d[][] controlPoints,double [] knotsU, double[] knotsV, double[][] weights,
-           int  degreeU, int degreeV,  Dictionary<string, string> properties = null)
+           int  degreeU, int degreeV,  Dictionary<string, Parameter> properties = null)
         {
             base.Properties = properties;
             base.TypeName = GetType().Name;

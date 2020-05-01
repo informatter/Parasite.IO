@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Rhino;
 
 using Autodesk.DesignScript.Geometry;
 using ParasiteIO.Conversion.Dynamo;
@@ -19,6 +19,10 @@ namespace ParasiteIO.Conversion.Dynamo
     /// </summary>
     public partial class DynamoConversion
     {
+
+
+    
+
 
         #region POINTS
         /// <summary>
@@ -87,9 +91,10 @@ namespace ParasiteIO.Conversion.Dynamo
                     if (faceIndexes[i].Length > 4 || faceIndexes[i].Length < 3)
                         throw new ParasiteArgumentException("A Dynamo mesh cant have a face with more than 4 vertices or less than 3");
 
-
                 }
             }
+
+
 
             Autodesk.DesignScript.Geometry.Mesh dMesh = Autodesk.DesignScript.Geometry.Mesh.ByPointsFaceIndices(vertices, indexGroups);
 
