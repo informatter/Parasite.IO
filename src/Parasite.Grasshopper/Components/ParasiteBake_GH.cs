@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 
 using Grasshopper.Kernel;
-using Rhino.Geometry;
-using ParasiteIO.Utilities;
 using ParasiteIO.Core.Types;
-using Grasshopper;
-using Grasshopper.Kernel.Data;
-using Grasshopper.Kernel.Types;
+using ParasiteIO.Core.Document.RhinoDocument;
+using Rhino.DocObjects;
 
 namespace Parasite.Grasshopper.Components
 {
     public class ParasiteBake_GH : GH_Component
     {
+        private static readonly Rhino.RhinoDoc DOC = Rhino.RhinoDoc.ActiveDoc;
         /// <summary>
         /// Initializes a new instance of the ParasiteBake_GH class.
         /// </summary>
@@ -55,7 +53,11 @@ namespace Parasite.Grasshopper.Components
             if (!DA.GetDataList(0, _data)) return;
             if (!DA.GetData(1, ref _bake)) return;
 
-            if(_bake) BakeToLayer.BakeTo(_data);
+            if (_bake)
+            {
+                //BakeToLayer.BakeTo(_data);
+                AddGeometryToDocument.AddToDocument(_data, LayerFactory.CreateLayers(_data, DOC), DOC);
+            }
 
            
 

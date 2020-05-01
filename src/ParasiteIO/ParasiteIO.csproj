@@ -83,7 +83,6 @@
     <Compile Include="Core\Data\CollectDataFromApplication\CollectDataFromDyn.cs" />
     <Compile Include="Conversion\Dynamo\DynamoConversion_Parasite.cs" />
     <Compile Include="Conversion\Dynamo\DynamoConversion_Rhino.cs" />
-    <Compile Include="Conversion\Dynamo\ToDynamoExtensions.cs" />
     <Compile Include="Conversion\Parasite\ParasiteConversion.cs" />
     <Compile Include="Conversion\Revit\ToRevit.cs" />
     <Compile Include="Core\Data\CollectDataFromApplication\CollectDataFromGH.cs" />
@@ -95,7 +94,7 @@
     <Compile Include="Core\Data\Properties\Property.cs" />
     <Compile Include="Core\Data\ReceiveDataFromParasite\IReceiveData.cs" />
     <Compile Include="Core\Data\ReceiveDataFromParasite\ToGrasshopper.cs" />
-    <Compile Include="Core\Document\RhinoDocument\AddGeometry.cs" />
+    <Compile Include="Core\Document\RhinoDocument\AddGeometryToDocument.cs" />
     <Compile Include="Core\Document\RhinoDocument\LayerFactory.cs" />
     <Compile Include="Core\Exceptions\ParasiteExceptions.cs" />
     <Compile Include="Core\Factory\IParasiteObjFactory.cs" />
@@ -124,7 +123,6 @@
     <Compile Include="Sync\RequestData.cs" />
     <Compile Include="Sync\PushData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\BakeToLayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

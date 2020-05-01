@@ -142,9 +142,8 @@ namespace ParasiteIO.Dynamo
                         GeometryExtraction.GeometryDataFromFloor(elements[i], outPutSolids, parasiteObjects, OP);
                     
                     else if (elements[i].Category.Name == "Roofs")
-                    {
                         GeometryExtraction.GeometryDataFromRoof(elements[i], outPutSolids, parasiteObjects, OP);
-                    }
+
 
                     else
                         throw new ParasiteNotImplementedExceptions("Category not implemented yet");
